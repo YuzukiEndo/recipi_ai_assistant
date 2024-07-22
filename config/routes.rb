@@ -1,20 +1,16 @@
 Rails.application.routes.draw do
-  get 'pages/home'
-  get 'user_sessions/new'
-  get 'user_sessions/create'
-  get 'user_sessions/destroy'
-  get 'users/new'
-  get 'users/create'
-
-  root 'pages#home' #また後で変えるかも
+  # アプリケーションのルートパス（トップページ）を設定
+  root 'pages#home'
+  
+  # ユーザー関連のルーティング
   resources :users, only: %i[new create]
-
-  # ユーザー登録
+  
+  # カスタムルーティング
+  # 新規登録ページへのルート
   get 'signup', to: 'users#new'
-
-  # ログイン・ログアウト
-  get 'login', to: 'user_sessions#new'
-  post 'login', to: 'user_sessions#create'
-  delete 'logout', to: 'user_sessions#destroy'
-
+  
+  # セッション管理（ログイン・ログアウト）のルーティング
+  get 'login', to: 'user_sessions#new'      # ログインフォームの表示
+  post 'login', to: 'user_sessions#create'  # ログイン処理の実行
+  delete 'logout', to: 'user_sessions#destroy' # ログアウト処理の実行
 end
