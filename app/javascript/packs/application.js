@@ -8,7 +8,9 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "bootstrap"
+// Bootstrap の JavaScript 機能をインポート
 import "../stylesheets/application"
+// カスタムスタイルシートをインポート
 
 Rails.start()
 Turbolinks.start()
