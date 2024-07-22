@@ -13,4 +13,10 @@
  *= require_tree .
  *= require_self
  */ 
- 
+ @import "bootstrap";
+
+// カスタムスタイルをここに追加
+.navbar {
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
