@@ -17,7 +17,7 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    flash[:success] = '安全に接続を切断しました。次回の認証まで機能が制限されます。'
+    flash[:success] = 'ユーザーセッション終了。再認証までアクセス権限が制限されます。'
     redirect_to root_path, status: :see_other
   end
 end
