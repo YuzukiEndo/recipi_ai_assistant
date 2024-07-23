@@ -1,0 +1,51 @@
+<% flash.each do |type, message| %>
+  <% if message.present? %>
+    <div class="flash-message-container">
+      <div id="flash-message" class="alert <%= bootstrap_class_for_flash(type) %> fade show typewriter" role="alert">
+        <span class="typewriter-text"><%= message %></span>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<style>
+  .flash-message-container {
+    position: fixed;
+    top: 150px;
+    left: 45%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 600px;
+    z-index: 1050;
+    text-align: center;
+  }
+
+  .typewriter {
+    display: inline-block;
+    overflow: hidden;
+    border-right: .15em solid orange;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation: 
+      typing 3.5s steps(40, end),
+      blink-caret .75s step-end infinite,
+      fadeOutDelay 9s forwards;
+  }
+
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: none; }
+  }
+
+  @keyframes fadeOutDelay {
+    0%, 95% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+</style>
+

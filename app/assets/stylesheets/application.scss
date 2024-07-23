@@ -1,12 +1,11 @@
 @import "bootstrap";
 
-// カスタムスタイルをここに追加
 .navbar {
   padding-bottom: 50px;
   padding-top: 50px;
 }
 
-.pt-11 { padding-top: 11rem !important; }
+.pt-9 { padding-top: 9rem !important; }
 
 body, input, button, select, textarea {
   font-family: 'Noto Serif JP', serif;
@@ -42,4 +41,22 @@ body, input, button, select, textarea {
 
 .custom-navbar {
   background-color: #ececec;
+}
+
+.alert {
+  font-size: 18px;
+  background-color: transparent;
+  border: none;
+  color: #505050;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+.alert-success::before {
+  content: "SUCCESS :: ";
+  color: #28a745;
+}
+
+.alert-danger::before {
+  content: "ERROR :: ";
+  color: #dc3545;
 }

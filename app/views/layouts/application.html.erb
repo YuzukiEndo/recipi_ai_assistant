@@ -6,18 +6,16 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <!-- キャッシュ制御のためのメタタグを追加 -->
     <meta name="turbolinks-cache-control" content="no-cache">
 
-    <!-- アプリケーション全体のスタイルシートを読み込み -->
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <!-- JavaScriptを読み込み（Webpackerを使用） -->
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Hina+Mincho&family=Noto+Serif+JP:wght@200..900&family=Orbitron:wght@400..900&family=Shippori+Mincho+B1&family=Tsukimi+Rounded&display=swap" rel="stylesheet">
-
-    <!-- ブラウザの戻るボタンが押された時にページをリロードするJavaScriptを追加 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
     <script>
       document.addEventListener('turbolinks:load', () => {
         if (performance.navigation.type == 2) {
@@ -27,22 +25,16 @@
     </script>
   </head>
   
-  <!-- Turbolinksのキャッシュを無効化 -->
   <body data-turbolinks-cache="false">
-    <!-- ナビゲーションバー -->
     <nav class="navbar navbar-expand-lg custom-navbar">
       <div class="container-fluid">
-        <!-- アプリケーションのブランドリンク -->
         <%= link_to 'RecipeAI', root_path, class: 'navbar-brand' %>
-        <!-- レスポンシブデザイン用のトグルボタン -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <!-- ナビゲーションリンク -->
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ms-auto">
             <% if logged_in? %>
-              <!-- ログイン済みユーザー向けのリンク -->
               <li class="nav-item">
                 <%= link_to 'お気に入り', '#', class: 'nav-link' %>
               </li>
@@ -56,7 +48,6 @@
                 <%= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link' %>
               </li>
             <% else %>
-              <!-- 未ログインユーザー向けのリンク -->
               <li class="nav-item">
                 <%= link_to '新規登録', signup_path, class: 'nav-link' %>
               </li>
@@ -68,8 +59,7 @@
         </div>
       </div>
     </nav>
-
-    <!-- メインコンテンツ -->
+    <%= render 'layouts/notice' %>
     <%= yield %>
   </body>
 </html>

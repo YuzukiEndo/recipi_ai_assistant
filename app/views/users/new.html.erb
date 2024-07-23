@@ -1,20 +1,19 @@
-<div class="container pt-11">
+<div class="container pt-9">
   <div class="row justify-content-center">
     <div class="col-md-4">
       <main class="form-signin w-100 m-auto">
-        <%= form_with model: @user, local: true do |f| %>
-          <h1 class="h3 mb-3 fw-normal">ユーザー登録</h1>
-
+        <%= form_with(model: @user, local: true) do |f| %>
+          <h1 class="h3 mb-3 fw-normal">新規登録</h1>
           <div class="form-floating mb-3">
-            <%= f.email_field :email, class: "form-control custom-input", id: "floatingEmail", placeholder: "name@example.com" %>
+            <%= f.email_field :email, class: "form-control custom-input", id: "floatingEmail", placeholder: "メールアドレス" %>
             <%= f.label :email, "メールアドレス", for: "floatingEmail", class: "custom-label" %>
           </div>
           <div class="form-floating mb-3">
-            <%= f.password_field :password, class: "form-control custom-input", id: "floatingPassword", placeholder: "Password" %>
+            <%= f.password_field :password, class: "form-control custom-input", id: "floatingPassword", placeholder: "パスワード" %>
             <%= f.label :password, "パスワード", for: "floatingPassword", class: "custom-label" %>
           </div>
           <div class="form-floating mb-3">
-            <%= f.password_field :password_confirmation, class: "form-control custom-input", id: "floatingPasswordConfirmation", placeholder: "Password Confirmation" %>
+            <%= f.password_field :password_confirmation, class: "form-control custom-input", id: "floatingPasswordConfirmation", placeholder: "パスワード（確認）" %>
             <%= f.label :password_confirmation, "パスワード（確認）", for: "floatingPasswordConfirmation", class: "custom-label" %>
           </div>
           <%= f.submit "登録", class: "btn btn-custom w-100 py-2" %>
@@ -23,3 +22,4 @@
     </div>
   </div>
 </div>
+
