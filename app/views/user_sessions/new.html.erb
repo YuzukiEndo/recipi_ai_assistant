@@ -1,0 +1,21 @@
+<div class="container pt-9">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <main class="form-signin w-100 m-auto">
+        <%= form_with(url: login_path, local: true) do |f| %>
+          <h1 class="h3 mb-3 fw-normal">ログイン</h1>
+
+          <div class="form-floating mb-3">
+            <%= f.email_field :email, class: "form-control custom-input", id: "floatingInput", placeholder: "メールアドレス" %>
+            <%= f.label :email, "メールアドレス", for: "floatingInput", class: "custom-label" %>
+          </div>
+          <div class="form-floating mb-3">
+            <%= f.password_field :password, class: "form-control custom-input", id: "floatingPassword", placeholder: "パスワード" %>
+            <%= f.label :password, "パスワード", for: "floatingPassword", class: "custom-label" %>
+          </div>
+          <%= f.submit "ログイン", class: "btn btn-custom w-100 py-2" %>
+        <% end %>
+      </main>
+    </div>
+  </div>
+</div>

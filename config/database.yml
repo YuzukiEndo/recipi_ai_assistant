@@ -1,0 +1,22 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password: password  # Docker Composeで設定したMySQLのrootパスワード
+  host: db  # Docker Composeで定義されたMySQLサービス名
+  port: 3306
+
+development:
+  <<: *default
+  database: recipi_ai_assistant_development
+
+test:
+  <<: *default
+  database: recipi_ai_assistant_test
+
+production:
+  <<: *default
+  database: recipi_ai_assistant_production
+  username: recipi_ai_assistant
+  password: <%= ENV['RECIPI_AI_ASSISTANT_DATABASE_PASSWORD'] %>

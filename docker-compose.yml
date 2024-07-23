@@ -1,0 +1,45 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    platform: linux/amd64
+    environment:
+      TZ: Asia/Tokyo
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - 3307:3306
+
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/recipi_ai_assistant:delegated
+      - bundle_data:/usr/local/bundle:cached
+      - node_modules:/recipi_ai_assistant/node_modules:cached
+      - /recipi_ai_assistant/vendor
+      - /recipi_ai_assistant/tmp
+      - /recipi_ai_assistant/log
+      - /recipi_ai_assistant/.git
+    environment:
+      TZ: Asia/Tokyo
+      SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - chrome
+
+  chrome:
+    image: seleniarm/standalone-chromium:latest
+    shm_size: 512m
+    ports:
+      - 4444:4444
+
+volumes:
+  mysql_data:
+  bundle_data:
+  node_modules:
