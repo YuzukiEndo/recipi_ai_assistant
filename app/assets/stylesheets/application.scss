@@ -5,3 +5,41 @@
   padding-bottom: 50px;
   padding-top: 50px;
 }
+
+.pt-11 { padding-top: 11rem !important; }
+
+body, input, button, select, textarea {
+  font-family: 'Noto Serif JP', serif;
+}
+
+.btn-custom {
+  background-color: #252525;
+  color: #f0f0f0;
+  border: 1px solid #252525;
+  transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+  background-color: #5c5c5c;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.custom-input {
+  background-color: #ffffff;
+  border: 1px solid #252525;
+  border-radius: 0.25rem;
+}
+
+.custom-input:focus {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 0.2rem rgba(95, 95, 95, 0.25);
+}
+
+.custom-label {
+  color: #6b6b6b;
+}
+
+.custom-navbar {
+  background-color: #ececec;
+}

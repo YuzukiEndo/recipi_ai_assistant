@@ -1,22 +1,21 @@
-<div class="container">
-  <div class="row">
-    <div class=" col-md-10 col-lg-8 mx-auto">
-      <h1>ログイン</h1>
-      <%= form_with url: login_path do |f| %>
-        <div class="mb-3">
-          <%= f.label :email %>
-          <%= f.email_field :email, class: "form-control" %>
-        </div>
-        <div class="mb-3">
-          <%= f.label :password %>
-          <%= f.password_field :password, class: "form-control" %>
-        </div>
-        <%= f.submit "ログイン", class: "btn btn-primary" %>
-      <% end %>
-      <div class='text-center'>
-        <%= link_to '登録ページへ', new_user_path %>
-        <%= link_to 'パスワードをお忘れの方はこちら', '#' %>
-      </div>
+<div class="container pt-11">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <main class="form-signin w-100 m-auto">
+        <%= form_with(url: login_path, local: true) do |f| %>
+          <h1 class="h3 mb-3 fw-normal">ログイン</h1>
+
+          <div class="form-floating mb-3">
+            <%= f.email_field :email, class: "form-control custom-input", id: "floatingInput", placeholder: "name@example.com" %>
+            <%= f.label :email, "メールアドレス", for: "floatingInput", class: "custom-label" %>
+          </div>
+          <div class="form-floating mb-3">
+            <%= f.password_field :password, class: "form-control custom-input", id: "floatingPassword", placeholder: "Password" %>
+            <%= f.label :password, "パスワード", for: "floatingPassword", class: "custom-label" %>
+          </div>
+          <%= f.submit "ログイン", class: "btn btn-custom w-100 py-2" %>
+        <% end %>
+      </main>
     </div>
   </div>
 </div>

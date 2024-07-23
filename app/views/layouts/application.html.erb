@@ -6,16 +6,31 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!-- キャッシュ制御のためのメタタグを追加 -->
+    <meta name="turbolinks-cache-control" content="no-cache">
+
     <!-- アプリケーション全体のスタイルシートを読み込み -->
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <!-- JavaScriptを読み込み（Webpackerを使用） -->
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Hina+Mincho&family=Noto+Serif+JP:wght@200..900&family=Orbitron:wght@400..900&family=Shippori+Mincho+B1&family=Tsukimi+Rounded&display=swap" rel="stylesheet">
+
+    <!-- ブラウザの戻るボタンが押された時にページをリロードするJavaScriptを追加 -->
+    <script>
+      document.addEventListener('turbolinks:load', () => {
+        if (performance.navigation.type == 2) {
+          location.reload(true);
+        }
+      });
+    </script>
   </head>
   
   <!-- Turbolinksのキャッシュを無効化 -->
   <body data-turbolinks-cache="false">
     <!-- ナビゲーションバー -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg custom-navbar">
       <div class="container-fluid">
         <!-- アプリケーションのブランドリンク -->
         <%= link_to 'RecipeAI', root_path, class: 'navbar-brand' %>
@@ -58,3 +73,4 @@
     <%= yield %>
   </body>
 </html>
+

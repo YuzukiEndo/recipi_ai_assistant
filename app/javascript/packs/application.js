@@ -18,9 +18,7 @@ import "../stylesheets/application"
 
 // Turbolinksのロードイベントをリッスン
 document.addEventListener('turbolinks:load', () => {
-  // ブラウザの戻るボタンが使用された場合（navigation.type == 2）
   if (performance.navigation.type == 2) {
-    // ページを強制的にリロード
     location.reload(true);
   }
 });
