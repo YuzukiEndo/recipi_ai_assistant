@@ -1,5 +1,9 @@
 @import "bootstrap";
 
+body, input, button, select, textarea {
+  font-family: 'Noto Serif JP', sans-serif;
+}
+
 .pt-9 { padding-top: 9rem !important; }
 
 .navbar {
@@ -13,10 +17,6 @@
 
 .navbar-brand {
   font-family: 'Julius Sans One', sans-serif;
-}
-
-body, input, button, select, textarea {
-  font-family: 'Noto Serif JP', sans-serif;
 }
 
 .btn-custom {
@@ -44,7 +44,7 @@ body, input, button, select, textarea {
 }
 
 .custom-label {
-  color: #6b6b6b;
+  color: #949494;
 }
 
 .alert {
