@@ -11,6 +11,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      # Sorceryのメソッドを使用して自動ログイン
+      auto_login(@user)
       # ユーザー作成成功時、ルートパスにリダイレクト
       redirect_to root_path
     else

@@ -11,8 +11,9 @@
     <!-- JavaScriptを読み込み（Webpackerを使用） -->
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body>
+  
+  <!-- Turbolinksのキャッシュを無効化 -->
+  <body data-turbolinks-cache="false">
     <!-- ナビゲーションバー -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">

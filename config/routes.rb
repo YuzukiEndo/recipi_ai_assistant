@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   # セッション管理（ログイン・ログアウト）のルーティング
   get 'login', to: 'user_sessions#new'      # ログインフォームの表示
   post 'login', to: 'user_sessions#create'  # ログイン処理の実行
+  get '/logout', to: 'user_sessions#destroy', as: :logout # ログアウト処理の実行（GETメソッド）
   delete 'logout', to: 'user_sessions#destroy' # ログアウト処理の実行
 end
