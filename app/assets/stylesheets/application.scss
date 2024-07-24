@@ -1,26 +1,51 @@
+$footer-bg: #888888;
+
 @import "bootstrap";
 
 .pt-9 { padding-top: 9rem !important; }
 
 body, input, button, select, textarea {
-  font-family: 'Noto Serif JP', sans-serif;
+  font-family: "Noto Serif JP", serif;
 }
 
 body {
-  background-color: #f3f3f3;
+  background-color: #ecebe0;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  color: #333333;
+  color: #666666;
 }
 
 main {
   flex: 1;
 }
 
+.footer {
+  background-color: #fafafa;
+  padding: 20px 0;
+  margin-top: auto;
+}
+
+.footer a {
+  color: #666666;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #cccccc;
+}
+
 .navbar {
   padding-bottom: 50px;
   padding-top: 50px;
+}
+
+.nav-link {
+  color: #666666;
+}
+
+.nav-link:hover {
+  color: #cccccc;
 }
 
 .custom-navbar {
@@ -31,10 +56,9 @@ main {
   font-family: 'Julius Sans One', sans-serif;
 }
 
-.nav-link:hover {
-  color: #3d3d3d;
+.navbar-brand:hover {
+  color: #cccccc;
 }
-
 
 .btn-custom {
   background-color: #252525;
@@ -68,7 +92,7 @@ main {
   font-size: 18px;
   background-color: transparent;
   border: none;
-  color: #505050;
+  color: #666666;
   font-family: "Noto Sans JP", sans-serif;
 }
 
@@ -82,17 +106,27 @@ main {
   color: #dc3545;
 }
 
-.footer {
-  background-color: #fdfdfd;
-  padding: 20px 0;
-  margin-top: auto;
+
+.scrolling-text-container {
+  overflow: hidden;
+  width: 100%;
+  height: 50px;
+  color: #9b9b9b;
 }
 
-.footer a {
-  color: #6c757d;
-  text-decoration: none;
+.scrolling-text-container {
+  position: fixed;
+  bottom: 140px;
 }
 
-.footer a:hover {
-  color: #3d3d3d;
+.scrolling-text {
+  white-space: nowrap;
+  animation: scroll 40s linear infinite;
+  font-size: 40px;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
