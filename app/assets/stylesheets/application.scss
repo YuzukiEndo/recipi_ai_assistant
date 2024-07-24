@@ -1,14 +1,61 @@
 @import "bootstrap";
 
+.pt-9 { padding-top: 9rem !important; }
+
+body, input, button, select, textarea {
+  font-family: "Noto Serif JP", serif;
+}
+
+body {
+  background-color: #ecebe0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: #666666;
+}
+
+main {
+  flex: 1;
+}
+
+.footer {
+  background-color: #fafafa;
+  padding: 20px 0;
+  margin-top: auto;
+}
+
+.footer a {
+  color: #666666;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #cccccc;
+}
+
 .navbar {
   padding-bottom: 50px;
   padding-top: 50px;
 }
 
-.pt-9 { padding-top: 9rem !important; }
+.nav-link {
+  color: #666666;
+}
 
-body, input, button, select, textarea {
-  font-family: 'Noto Serif JP', serif;
+.nav-link:hover {
+  color: #cccccc;
+}
+
+.custom-navbar {
+  background-color: #fdfdfd;
+}
+
+.navbar-brand {
+  font-family: 'Julius Sans One', sans-serif;
+}
+
+.navbar-brand:hover {
+  color: #cccccc;
 }
 
 .btn-custom {
@@ -36,18 +83,14 @@ body, input, button, select, textarea {
 }
 
 .custom-label {
-  color: #6b6b6b;
-}
-
-.custom-navbar {
-  background-color: #ececec;
+  color: #949494;
 }
 
 .alert {
   font-size: 18px;
   background-color: transparent;
   border: none;
-  color: #505050;
+  color: #666666;
   font-family: "Noto Sans JP", sans-serif;
 }
 
@@ -59,4 +102,54 @@ body, input, button, select, textarea {
 .alert-danger::before {
   content: "ERROR :: ";
   color: #dc3545;
+}
+
+
+.scrolling-text-container {
+  overflow: hidden;
+  width: 100%;
+  height: 50px;
+  color: #9b9b9b;
+}
+
+.scrolling-text-container {
+  position: fixed;
+  bottom: 210px;
+}
+
+.scrolling-text {
+  white-space: nowrap;
+  animation: scroll 40s linear infinite;
+  font-size: 40px;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.power-button-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.power-icon {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 8px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.power-icon:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 0 0 0 12px rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.power-icon:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 20px rgba(255, 255, 255, 0.1);
 }
