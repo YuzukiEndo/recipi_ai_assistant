@@ -1,10 +1,22 @@
 @import "bootstrap";
 
+.pt-9 { padding-top: 9rem !important; }
+
 body, input, button, select, textarea {
   font-family: 'Noto Serif JP', sans-serif;
 }
 
-.pt-9 { padding-top: 9rem !important; }
+body {
+  background-color: #f3f3f3;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: #333333;
+}
+
+main {
+  flex: 1;
+}
 
 .navbar {
   padding-bottom: 50px;
@@ -12,12 +24,17 @@ body, input, button, select, textarea {
 }
 
 .custom-navbar {
-  background-color: #ececec;
+  background-color: #fdfdfd;
 }
 
 .navbar-brand {
   font-family: 'Julius Sans One', sans-serif;
 }
+
+.nav-link:hover {
+  color: #3d3d3d;
+}
+
 
 .btn-custom {
   background-color: #252525;
@@ -63,4 +80,19 @@ body, input, button, select, textarea {
 .alert-danger::before {
   content: "ERROR :: ";
   color: #dc3545;
+}
+
+.footer {
+  background-color: #fdfdfd;
+  padding: 20px 0;
+  margin-top: auto;
+}
+
+.footer a {
+  color: #6c757d;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #3d3d3d;
 }

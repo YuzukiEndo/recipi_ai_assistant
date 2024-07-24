@@ -8,52 +8,15 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Hina+Mincho&family=Noto+Serif+JP:wght@200..900&family=Orbitron:wght@400..900&family=Shippori+Mincho+B1&family=Tsukimi+Rounded&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <%= render 'layouts/fonts' %>
   </head>
   
-  <body>
-    <nav class="navbar navbar-expand-lg custom-navbar">
-      <div class="container-fluid">
-        <%= link_to '<UTOPIA> CUSINE AI </UTOPIA>', root_path, class: 'navbar-brand' %>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarMenu">
-          <ul class="navbar-nav ms-auto">
-            <% if logged_in? %>
-              <li class="nav-item">
-                <%= link_to 'お気に入り', '#', class: 'nav-link' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to '作った', '#', class: 'nav-link' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to '設定', '#', class: 'nav-link' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link' %>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to '新規登録', signup_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'ログイン', login_path, class: 'nav-link' %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </nav>
+  <body class="d-flex flex-column min-vh-100">
+    <%= render 'layouts/navigation' %>
     <%= render 'layouts/notice' %>
-    <%= yield %>
+    <main class="flex-grow-1">
+      <%= yield %>
+    </main>
+    <%= render 'layouts/footer' %>
   </body>
 </html>
