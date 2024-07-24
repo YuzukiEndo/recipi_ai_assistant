@@ -1,5 +1,3 @@
-$footer-bg: #888888;
-
 @import "bootstrap";
 
 .pt-9 { padding-top: 9rem !important; }
@@ -129,4 +127,29 @@ main {
 @keyframes scroll {
   0% { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
+}
+
+.power-button-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.power-icon {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 8px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.power-icon:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 0 0 0 12px rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.power-icon:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 20px rgba(255, 255, 255, 0.1);
 }
