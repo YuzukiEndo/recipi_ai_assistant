@@ -1,0 +1,36 @@
+<div class="recipe-conditions-container">
+  <h1 class="recipe-conditions-heading">レシピ生成条件設定</h1>
+
+  <%= form_with(url: recipe_conditions_path, local: true, class: 'recipe-conditions-form') do |f| %>
+    <div class="recipe-conditions-form-group">
+      <h2 class="recipe-conditions-heading">調理時間</h2>
+      <%= f.radio_button :cooking_time, '短め' %>
+      <%= f.label :cooking_time_短め, '短め' %>
+      <%= f.radio_button :cooking_time, '普通' %>
+      <%= f.label :cooking_time_普通, '普通' %>
+      <%= f.radio_button :cooking_time, '長め' %>
+      <%= f.label :cooking_time_長め, '長め' %>
+    </div>
+
+    <div class="recipe-conditions-form-group">
+      <h2 class="recipe-conditions-heading">カテゴリー</h2>
+      <%= f.radio_button :category, '和食' %>
+      <%= f.label :category_和食, '和食' %>
+      <%= f.radio_button :category, '洋食' %>
+      <%= f.label :category_洋食, '洋食' %>
+      <%= f.radio_button :category, '中華' %>
+      <%= f.label :category_中華, '中華' %>
+    </div>
+
+    <div class="recipe-conditions-form-group">
+      <h2 class="recipe-conditions-heading">食材（最大5つ）</h2>
+      <% 5.times do |i| %>
+        <%= f.select "ingredient_#{i}", @ingredients.map { |ing| [ing.name, ing.id] }, { prompt: '食材を選択' } %>
+      <% end %>
+    </div>
+
+    <div class="recipe-conditions-submit-button">
+      <%= f.submit 'レシピを生成', class: 'btn btn-custom' %>
+    </div>
+  <% end %>
+</div>

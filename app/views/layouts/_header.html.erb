@@ -1,0 +1,20 @@
+<header class="header">
+  <div class="header-container">
+    <div class="header-content">
+      <%= link_to '<UTOPIA> CUSINE AI </UTOPIA>', root_path, class: 'header-brand' %>
+      <nav class="header-nav">
+        <ul class="header-nav-list">
+          <% if logged_in? %>
+            <li class="header-nav-item"><%= link_to 'お気に入り', '#', class: 'header-nav-link' %></li>
+            <li class="header-nav-item"><%= link_to '作った', '#', class: 'header-nav-link' %></li>
+            <li class="header-nav-item"><%= link_to '設定', '#', class: 'header-nav-link' %></li>
+            <li class="header-nav-item"><%= link_to 'ログアウト', logout_path, method: :delete, class: 'header-nav-link' %></li>
+          <% else %>
+            <li class="header-nav-item"><%= link_to '新規登録', signup_path, class: 'header-nav-link' %></li>
+            <li class="header-nav-item"><%= link_to 'ログイン', login_path, class: 'header-nav-link' %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

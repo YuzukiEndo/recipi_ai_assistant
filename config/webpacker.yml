@@ -7,16 +7,17 @@ default: &default
   public_output_path: packs
   cache_path: tmp/cache/webpacker
   webpack_compile_output: true
+  additional_paths: ['app/javascript/stylesheets']
 
   # Additional paths webpack should lookup modules
   # ['app/assets', 'engine/foo/app/assets']
-  additional_paths: []
+  #additional_paths: []
 
   # Reload manifest.json on all requests so we reload latest compiled packs
   cache_manifest: false
 
   # Extract and emit a css file
-  extract_css: true
+  extract_css: false
 
   static_assets_extensions:
     - .jpg
@@ -50,7 +51,7 @@ default: &default
 development:
   <<: *default
   compile: true
-  extract_css: true
+
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:
     https: false

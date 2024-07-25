@@ -27,6 +27,7 @@ services:
     environment:
       TZ: Asia/Tokyo
       SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub
+      NODE_OPTIONS: --openssl-legacy-provider
     ports:
       - "3000:3000"
     depends_on:

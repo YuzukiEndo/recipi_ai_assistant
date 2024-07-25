@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_19_064218) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_25_022845) do
+  create_table "categories", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ingredients", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_ingredients_on_category_id"
+  end
+
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -20,4 +34,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_19_064218) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "ingredients", "categories"
 end

@@ -1,3 +1,5 @@
+FROM node:16-alpine as node
+ENV NODE_OPTIONS=--openssl-legacy-provider
 FROM ruby:3.3.1
 ENV LANG C.UTF-8
 ENV TZ Asia/Tokyo
