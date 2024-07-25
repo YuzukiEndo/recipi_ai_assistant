@@ -17,8 +17,8 @@ body, input, button, select, textarea {
 main {
   flex: 1 0 auto;
   overflow-y: auto;
-  padding-top: 60px; // ヘッダーの高さに応じて調整
-  padding-bottom: 60px; // フッターの高さに応じて調整
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 .pt-9 { 
