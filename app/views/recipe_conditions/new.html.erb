@@ -1,0 +1,43 @@
+<div class="recipe-container">
+  <h2>レシピ生成条件設定</h2>
+
+  <%= form_with(url: recipe_conditions_path, local: true, class: 'recipe-form') do |f| %>
+    <div class="recipe-form-group">
+      <h3>調理時間</h3>
+      <div class="radio-group">
+        <%= f.radio_button :cooking_time, '短め', id: 'cooking_time_short' %>
+        <%= f.label :cooking_time_short, '短め' %>
+        <%= f.radio_button :cooking_time, '普通', id: 'cooking_time_medium' %>
+        <%= f.label :cooking_time_medium, '普通' %>
+        <%= f.radio_button :cooking_time, '長め', id: 'cooking_time_long' %>
+        <%= f.label :cooking_time_long, '長め' %>
+      </div>
+    </div>
+
+    <div class="recipe-form-group">
+      <h3>カテゴリー</h3>
+      <div class="radio-group">
+        <%= f.radio_button :category, '和食', id: 'category_japanese' %>
+        <%= f.label :category_japanese, '和食' %>
+        <%= f.radio_button :category, '洋食', id: 'category_western' %>
+        <%= f.label :category_western, '洋食' %>
+        <%= f.radio_button :category, '中華', id: 'category_chinese' %>
+        <%= f.label :category_chinese, '中華' %>
+      </div>
+    </div>
+
+    <div class="recipe-form-group">
+      <%= f.text_field :ingredients, class: 'recipe-form-control recipe-js-input', placeholder: ' ' %>
+      <%= f.label :ingredients, "食材（カンマ区切りで入力）" %>
+    </div>
+
+    <div class="recipe-form-actions">
+      <a href="#" class="recipe-btn-svg" onclick="document.querySelector('.recipe-form').submit(); return false;">
+        <svg>
+          <rect x="2" y="2" rx="0" fill="none" width="200" height="50"></rect>
+        </svg>
+        <span>レシピを生成</span>
+      </a>
+    </div>
+  <% end %>
+</div>

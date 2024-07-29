@@ -6,13 +6,13 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= render 'layouts/fonts' %>
   </head>
   
   <body class="d-flex flex-column min-vh-100">
-    <%= render 'layouts/navigation' %>
+    <%= render 'layouts/header' %>
     <%= render 'layouts/notice' %>
     <main class="flex-grow-1">
       <%= yield %>
