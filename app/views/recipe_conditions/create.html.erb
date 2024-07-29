@@ -1,0 +1,32 @@
+<h1>生成されたレシピ</h1>
+
+<% if @recipe %>
+  <div class="recipe-container">
+    <h2 class="recipe-title"><%= @recipe[:name] %></h2>
+    
+    <div class="recipe-details">
+      <p><strong>調理時間:</strong> <%= @recipe[:cooking_time] %></p>
+      <p><strong>カテゴリー:</strong> <%= @recipe[:category] %></p>
+    </div>
+    
+    <div class="recipe-ingredients">
+      <h3>材料:</h3>
+      <ul>
+        <% @recipe[:ingredients].split(',').each do |ingredient| %>
+          <li><%= ingredient.strip %></li>
+        <% end %>
+      </ul>
+    </div>
+    
+    <div class="recipe-instructions">
+      <h3>調理手順:</h3>
+      <ol>
+        <% @recipe[:instructions].split("\n").each do |step| %>
+          <li><%= step.strip %></li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+<% else %>
+  <p class="error-message">レシピの生成に失敗しました。もう一度お試しください。</p>
+<% end %>

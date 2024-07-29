@@ -1,0 +1,79 @@
+.flash-message-container {
+  position: fixed;
+  top: 150px;
+  left: 45%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 600px;
+  z-index: 1050;
+  text-align: center;
+}
+
+.flash-message {
+  font-size: 18px;
+  background-color: transparent;
+  border: none;
+  color: #666666;
+  font-family: "Noto Sans JP", sans-serif;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.flash-success::before {
+  content: "SUCCESS :: ";
+  color: #28a745;
+}
+
+.flash-danger::before {
+  content: "ERROR :: ";
+  color: #dc3545;
+}
+
+.flash-info::before {
+  content: "INFO :: ";
+  color: #17a2b8;
+}
+
+.flash-warning::before {
+  content: "WARNING :: ";
+  color: #ffc107;
+}
+
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .15em;
+  animation: typing 2.5s steps(40, end);
+}
+
+.typewriter::after {
+  content: '|';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-55%);
+  color: #808080;
+  font-weight: normal;
+  font-size: 1.2em;
+  line-height: 1;
+  animation: blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { opacity: 0 }
+  50% { opacity: 1 }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}

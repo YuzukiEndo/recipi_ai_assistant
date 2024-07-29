@@ -14,10 +14,9 @@ import * as ActiveStorage from "@rails/activestorage"
 
 import "channels"
 
-import "bootstrap"
-
 import '../stylesheets/application.scss'
 
+// 入力フィールドの処理
 document.addEventListener('turbolinks:load', function() {
   const inputs = document.querySelectorAll('.js-input, .recipe-js-input');
   
@@ -30,6 +29,23 @@ document.addEventListener('turbolinks:load', function() {
       }
     });
   });
+});
+
+// フラッシュメッセージの自動フェードアウト
+document.addEventListener('turbolinks:load', function() {
+  const flashMessages = document.querySelectorAll('.flash-message');
+  flashMessages.forEach(message => {
+    setTimeout(() => {
+      message.style.animation = 'fadeOut 0.5s forwards';
+    }, 5000);
+  });
+});
+
+// フェードアウトアニメーション終了後のメッセージ削除
+document.addEventListener('animationend', function(event) {
+  if (event.animationName === 'fadeOut') {
+    event.target.remove();
+  }
 });
 
 Rails.start()

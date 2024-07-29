@@ -1,6 +1,5 @@
 <div class="recipe-container">
   <h2>レシピ生成条件設定</h2>
-
   <%= form_with(url: recipe_conditions_path, local: true, class: 'recipe-form') do |f| %>
     <div class="recipe-form-group">
       <h3>調理時間</h3>
@@ -13,7 +12,6 @@
         <%= f.label :cooking_time_long, '長め' %>
       </div>
     </div>
-
     <div class="recipe-form-group">
       <h3>カテゴリー</h3>
       <div class="radio-group">
@@ -25,19 +23,17 @@
         <%= f.label :category_chinese, '中華' %>
       </div>
     </div>
-
     <div class="recipe-form-group">
       <%= f.text_field :ingredients, class: 'recipe-form-control recipe-js-input', placeholder: ' ' %>
       <%= f.label :ingredients, "食材（カンマ区切りで入力）" %>
     </div>
-
     <div class="recipe-form-actions">
-      <a href="#" class="recipe-btn-svg" onclick="document.querySelector('.recipe-form').submit(); return false;">
+      <%= button_tag type: 'submit', class: 'recipe-btn-svg' do %>
         <svg>
           <rect x="2" y="2" rx="0" fill="none" width="200" height="50"></rect>
         </svg>
         <span>レシピを生成</span>
-      </a>
+      <% end %>
     </div>
   <% end %>
 </div>

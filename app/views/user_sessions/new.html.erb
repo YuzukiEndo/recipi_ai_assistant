@@ -13,12 +13,12 @@
     </div>
 
     <div class="form-actions">
-      <a href="#" class="btn-svg" onclick="document.querySelector('.login-form').submit(); return false;">
+      <%= f.button type: 'submit', class: 'btn-svg' do %>
         <svg>
           <rect x="2" y="2" rx="0" fill="none" width="200" height="50"></rect>
         </svg>
         <span>認証</span>
-      </a>
+      <% end %>
     </div>
   <% end %>
 </div>

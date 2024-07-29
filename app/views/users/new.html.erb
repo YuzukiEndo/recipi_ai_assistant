@@ -14,12 +14,12 @@
       <%= f.label :password_confirmation, "パスワード (確認)" %>
     </div>
     <div class="form-actions">
-      <a href="#" class="btn-svg" onclick="document.querySelector('.signup-form').submit(); return false;">
+      <%= f.button type: 'submit', class: 'btn-svg' do %>
         <svg>
           <rect x="2" y="2" rx="0" fill="none" width="200" height="50"></rect>
         </svg>
         <span>登録</span>
-      </a>
+      <% end %>
     </div>
   <% end %>
 </div>
