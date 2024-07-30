@@ -16,20 +16,6 @@ import "channels"
 
 import '../stylesheets/application.scss'
 
-// 入力フィールドの処理
-document.addEventListener('turbolinks:load', function() {
-  const inputs = document.querySelectorAll('.js-input, .recipe-js-input');
-  
-  inputs.forEach(function(input) {
-    input.addEventListener('keyup', function() {
-      if (this.value) {
-        this.classList.add('not-empty');
-      } else {
-        this.classList.remove('not-empty');
-      }
-    });
-  });
-});
 
 // フラッシュメッセージの自動フェードアウト
 document.addEventListener('turbolinks:load', function() {

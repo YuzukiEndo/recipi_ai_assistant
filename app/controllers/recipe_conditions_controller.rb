@@ -1,5 +1,5 @@
 class RecipeConditionsController < ApplicationController
-  skip_before_action :require_login, only: [:new, :create]
+  skip_before_action :require_login, only: [:new, :create, :index]
 
   def new
     @categories = ['和食', '洋食', '中華']
@@ -9,7 +9,6 @@ class RecipeConditionsController < ApplicationController
 
   def create
     if valid_form_input?
-      # 仮のレシピデータ（後で実際の生成ロジックに置き換え）
       @recipe = {
         name: "仮のレシピ名",
         cooking_time: params[:cooking_time],
@@ -17,7 +16,7 @@ class RecipeConditionsController < ApplicationController
         ingredients: params[:ingredients],
         instructions: "ここに調理手順が入ります"
       }
-      render :create
+      redirect_to result_recipes_path(@recipe)
     else
       flash.now[:danger] = '不適切な入力データです。全ての項目を入力してください。'
       @categories = ['和食', '洋食', '中華']
@@ -25,6 +24,11 @@ class RecipeConditionsController < ApplicationController
       @ingredients = Ingredient.all
       render :new
     end
+  end
+  
+  def index
+    # レシピ条件の一覧を表示するロジックを追加
+    # 例: @recipe_conditions = RecipeCondition.all
   end
 
   private

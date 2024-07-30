@@ -125,50 +125,6 @@ h2 {
   color: #666666;
 }
 
-.signup-form, .login-form {
-  .form-group {
-    position: relative;
-    margin: 32px 0;
-  }
-
-  .form-control {
-    display: block;
-    width: 100%;
-    height: 36px;
-    border-width: 0 0 2px 0;
-    border-color: #666666;
-    font-size: 18px;
-    line-height: 26px;
-    font-weight: 400;
-    background-color: transparent;
-    font-family: "Noto Sans JP", sans-serif;
-    color: #5f5f5f;
-
-    &:focus {
-      outline: none;
-    }
-
-    &:focus,
-    &.not-empty {
-      + label {
-        transform: translateY(-24px);
-      }
-    }
-  }
-
-  label {
-    position: absolute;
-    left: 0;
-    bottom: 11px;
-    font-family: "Noto Serif JP", serif;
-    font-size: 18px;
-    line-height: 26px;
-    font-weight: 400;
-    color: #888;
-    cursor: text;
-    transition: transform .2s ease-in-out;
-  }
-}
 
 .btn-svg,.recipe-btn-svg {
   font-weight: 700;
@@ -294,13 +250,17 @@ h2 {
   color: #666666;
 }
 
-.recipe-form {
-  .recipe-form-group {
+.recipe-form,
+.signup-form,
+.login-form {
+  .recipe-form-group,
+  .form-group {
     position: relative;
     margin: 32px 0;
   }
 
-  .recipe-form-control {
+  .recipe-form-control,
+  .form-control {
     display: block;
     width: 100%;
     height: 36px;
@@ -312,30 +272,22 @@ h2 {
     background-color: transparent;
     font-family: "Noto Sans JP", sans-serif;
     color: #5f5f5f;
+    padding-top: 20px; // ラベルのためのスペースを確保
 
     &:focus {
       outline: none;
-    }
-
-    &:focus,
-    &.not-empty {
-      + label {
-        transform: translateY(-24px);
-      }
     }
   }
 
   label {
     position: absolute;
     left: 0;
-    bottom: 11px;
+    top: 0;
     font-family: "Noto Serif JP", serif;
-    font-size: 18px;
-    line-height: 26px;
+    font-size: 14px;
+    line-height: 20px;
     font-weight: 400;
     color: #888;
-    cursor: text;
-    transition: transform .2s ease-in-out;
   }
 }
 
