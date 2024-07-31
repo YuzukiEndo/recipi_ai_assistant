@@ -25,22 +25,21 @@ class RecipeConditionsController < ApplicationController
               messages: [{ role: "user", content: prompt }],
               temperature: 0.7,
             })
-          
-          parse_response(response.dig("choices", 0, "message", "content"))
+          Rails.logger.debug "API Response: #{response.inspect}"
+          parsed_recipe = parse_response(response.dig("choices", 0, "message", "content"))
+          Rails.logger.debug "Parsed Recipe: #{parsed_recipe.inspect}"
+          parsed_recipe
+        end
+        if @recipe.nil? || @recipe.empty?
+          raise "Failed to generate recipe"
         end
         redirect_to result_recipes_path(@recipe)
       rescue Faraday::TooManyRequestsError => e
-        retries += 1
-        if retries <= 3
-          sleep_time = 2 ** retries
-          sleep(sleep_time)
-          retry
-        else
-          flash[:error] = "APIリクエスト制限に達しました。しばらく待ってから再試行してください。"
-          redirect_to recipe_conditions_new_path
-        end
+        # 既存のコード
       rescue => e
-        flash[:error] = "レシピの生成中にエラーが発生しました。"
+        Rails.logger.error "Error generating recipe: #{e.message}"
+        Rails.logger.error e.backtrace.join("\n")
+        flash[:error] = "レシピの生成中にエラーが発生しました。詳細: #{e.message}"
         redirect_to recipe_conditions_new_path
       end
     else
@@ -67,26 +66,51 @@ class RecipeConditionsController < ApplicationController
   end
 
   def generate_prompt(category, cooking_time, ingredients)
-    "以下の条件でレシピを考えてください：
-     - カテゴリー: #{category}
-     - 調理時間: #{cooking_time}
-     - 材料: #{ingredients}
-     
-     レシピは以下の形式で返してください：
-     1. レシピ名
-     2. 材料リスト（分量も含む）
-     3. 調理手順（番号付きのステップ）"
+    <<~PROMPT
+      あなたは優秀な料理人です。以下の条件に基づいて、具体的で実行可能なレシピを作成してください：
+
+      条件：
+      - カテゴリー: #{category}
+      - 調理時間: #{cooking_time}
+      - 主な材料: #{ingredients}
+
+      以下の形式で、日本語でレシピを作成してください：
+
+      1. 料理名
+      [ここに料理名のみを1行で記入]
+
+      2. 材料リスト（1人前）
+      - [材料1]: [分量]
+      - [材料2]: [分量]
+      ...
+
+      3. 調理手順
+      1. [手順1]
+      2. [手順2]
+      ...
+
+      注意事項：
+      - 料理名は必ず記載し、既存の料理名を使用してください。
+      - 材料リストは1人前の分量を明確に記載してください。
+      - 調理手順は簡潔かつ明確に、番号付きで記載してください。
+      - 指定された材料を必ず使用し、存在しない材料は無視してください。
+      - 各セクションの間に空行を入れてください。
+
+      このフォーマットに厳密に従ってレシピを作成してください。
+    PROMPT
   end
 
   def parse_response(content)
+    sections = content.split(/\n\n\d+\.\s+/)
+    name = sections[0]&.split("\n")&.first&.gsub(/^\d+\.\s*/, '')&.strip
     {
-      name: content.match(/1\.\s*(.+)/)[1],
+      name: name,
       cooking_time: params[:cooking_time],
       category: params[:category],
-      ingredients: content.match(/2\.\s*(.+?)3\./m)[1].strip,
-      instructions: content.match(/3\.\s*(.+)/m)[1].strip
+      ingredients: sections[1]&.strip,
+      instructions: sections[2]&.strip
     }
-  rescue
+  rescue => e
     nil
   end
 

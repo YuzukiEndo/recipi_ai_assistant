@@ -1,23 +1,27 @@
 <h1>生成されたレシピ</h1>
 
-<% if @recipe %>
+<% if @recipe && @recipe[:name].present? %>
   <h2><%= @recipe[:name] %></h2>
   <p>調理時間: <%= @recipe[:cooking_time] %></p>
   <p>カテゴリー: <%= @recipe[:category] %></p>
   
-  <h3>材料:</h3>
-  <ul>
-    <% @recipe[:ingredients].split(',').each do |ingredient| %>
-      <li><%= ingredient.strip %></li>
-    <% end %>
-  </ul>
+  <% if @recipe[:ingredients].present? %>
+    <h3>材料:</h3>
+    <ul>
+      <% @recipe[:ingredients].split("\n").each do |ingredient| %>
+        <li><%= ingredient.strip %></li>
+      <% end %>
+    </ul>
+  <% end %>
   
-  <h3>調理手順:</h3>
-  <ol>
-    <% @recipe[:instructions].split(/\d+\./).reject(&:empty?).each do |step| %>
-      <li><%= step.strip %></li>
-    <% end %>
-  </ol>
+  <% if @recipe[:instructions].present? %>
+    <h3>調理手順:</h3>
+    <ol>
+      <% @recipe[:instructions].split(/\d+\./).reject(&:empty?).each do |step| %>
+        <li><%= step.strip %></li>
+      <% end %>
+    </ol>
+  <% end %>
 <% else %>
   <p>レシピの生成に失敗しました。もう一度お試しください。</p>
 <% end %>
