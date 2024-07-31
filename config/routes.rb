@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   # レシピ関連のルート
-  get 'recipe_conditions', to: 'recipe_conditions#index'
   get 'recipe_conditions/new', to: 'recipe_conditions#new'
   post 'recipe_conditions', to: 'recipe_conditions#create'
 
