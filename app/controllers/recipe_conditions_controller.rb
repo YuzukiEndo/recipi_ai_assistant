@@ -95,7 +95,6 @@ class RecipeConditionsController < ApplicationController
       - 調理手順は簡潔かつ明確に、番号付きで記載してください。
       - 指定された材料を必ず使用し、存在しない材料は無視してください。
       - 各セクションの間に空行を入れてください。
-
       このフォーマットに厳密に従ってレシピを作成してください。
     PROMPT
   end
