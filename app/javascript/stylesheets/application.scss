@@ -291,51 +291,45 @@ h2 {
   }
 }
 
-
 .recipe-form-actions {
   text-align: center;
   margin-top: 80px;
 }
 
-.radio-group {
-  margin-bottom: 15px;
-}
-
-.radio-group input[type="radio"] {
-  margin-right: 5px;
-}
-
-.radio-group label {
-  margin-right: 15px;
-  position: static;
-  cursor: pointer;
-}
-
-.recipe-form-group h3 {
-  margin-bottom: 10px;
-  font-size: 18px;
-  color: #666666;
+.recipe-form-group {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .radio-group {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 40px;;
+  gap: 10px;
+  width: 100%;
+
   input[type="radio"] {
     display: none;
   }
 
   label {
+    flex: 1;
+    text-align: left;
     position: relative;
-    padding-left: 30px;
+    padding: 10px 5px 10px 35px;
     cursor: pointer;
-    margin-right: 15px;
+    font-size: 14px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
 
     &:before {
       content: '';
       position: absolute;
-      left: 0;
+      left: 5px;
       top: 50%;
       transform: translateY(-50%);
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       border: 2px solid #666666;
       border-radius: 50%;
       background-color: #fff;
@@ -346,13 +340,34 @@ h2 {
     &:after {
       content: '';
       position: absolute;
-      left: 4.2px;
+      left: 9px;
       top: 50%;
       transform: translateY(-50%);
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
       border-radius: 50%;
       background-color: #666666;
     }
   }
 }
+
+.recipe-form-group {
+  margin-bottom: 20px;
+  padding-left: 30px;
+  h3 {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #666666;
+  }
+}
+
+@media (max-width: 768px) {
+  .radio-group {
+    flex-direction: column;
+
+    label {
+      margin-bottom: 10px;
+    }
+  }
+}
+

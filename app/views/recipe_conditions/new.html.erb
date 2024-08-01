@@ -4,28 +4,28 @@
     <div class="recipe-form-group">
       <h3>調理時間</h3>
       <div class="radio-group">
-        <%= f.radio_button :cooking_time, '短め', id: 'cooking_time_short' %>
-        <%= f.label :cooking_time_short, '短め' %>
-        <%= f.radio_button :cooking_time, '普通', id: 'cooking_time_medium' %>
-        <%= f.label :cooking_time_medium, '普通' %>
-        <%= f.radio_button :cooking_time, '長め', id: 'cooking_time_long' %>
-        <%= f.label :cooking_time_long, '長め' %>
+        <%= f.radio_button :cooking_time, '短時間', id: 'cooking_time_short' %>
+        <%= f.label :cooking_time_short, '短時間' %>
+        <%= f.radio_button :cooking_time, '標準', id: 'cooking_time_medium' %>
+        <%= f.label :cooking_time_medium, '標準' %>
+        <%= f.radio_button :cooking_time, '長時間', id: 'cooking_time_long' %>
+        <%= f.label :cooking_time_long, '長時間' %>
       </div>
     </div>
     <div class="recipe-form-group">
       <h3>カテゴリー</h3>
       <div class="radio-group">
-        <%= f.radio_button :category, '和食', id: 'category_japanese' %>
-        <%= f.label :category_japanese, '和食' %>
-        <%= f.radio_button :category, '洋食', id: 'category_western' %>
-        <%= f.label :category_western, '洋食' %>
-        <%= f.radio_button :category, '中華', id: 'category_chinese' %>
-        <%= f.label :category_chinese, '中華' %>
+        <%= f.radio_button :category, '和風', id: 'category_japanese' %>
+        <%= f.label :category_japanese, '和風' %>
+        <%= f.radio_button :category, '洋風', id: 'category_western' %>
+        <%= f.label :category_western, '洋風' %>
+        <%= f.radio_button :category, '中華風', id: 'category_chinese' %>
+        <%= f.label :category_chinese, '中華風' %>
       </div>
     </div>
     <div class="recipe-form-group">
       <%= f.text_field :ingredients, class: 'recipe-form-control recipe-js-input', placeholder: ' ' %>
-      <%= f.label :ingredients, "食材（カンマ区切りで入力）" %>
+      <%= f.label :ingredients, "食材" %>
     </div>
     <div class="recipe-form-actions">
       <%= button_tag type: 'submit', class: 'recipe-btn-svg' do %>

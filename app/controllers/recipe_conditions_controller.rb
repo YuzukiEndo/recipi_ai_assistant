@@ -5,8 +5,8 @@ class RecipeConditionsController < ApplicationController
   before_action :check_rate_limit, only: [:create]
 
   def new
-    @categories = ['和食', '洋食', '中華']
-    @cooking_times = ['短め', '普通', '長め']
+    @categories = ['和風', '洋風', '中華風']
+    @cooking_times = ['短時間', '標準', '長時間']
     @ingredients = Ingredient.all
   end
 
@@ -36,17 +36,15 @@ class RecipeConditionsController < ApplicationController
         redirect_to result_recipes_path(@recipe)
       rescue Faraday::TooManyRequestsError => e
       rescue => e
-        Rails.logger.error "Error generating recipe: #{e.message}"
-        Rails.logger.error e.backtrace.join("\n")
         flash[:error] = "レシピの生成中にエラーが発生しました。詳細: #{e.message}"
         redirect_to recipe_conditions_new_path
       end
     else
-      flash.now[:danger] = '不適切な入力データです。全ての項目を入力してください。'
-      @categories = ['和食', '洋食', '中華']
-      @cooking_times = ['短め', '普通', '長め']
+      flash[:danger] = '不適切な入力データです。全ての項目を入力してください。'
+      @categories = ['和風', '洋風', '中華風']
+      @cooking_times = ['短時間', '標準', '長時間']
       @ingredients = Ingredient.all
-      render :new
+      redirect_to recipe_conditions_new_path
     end
   end
 
