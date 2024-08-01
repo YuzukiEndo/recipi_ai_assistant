@@ -35,7 +35,6 @@ class RecipeConditionsController < ApplicationController
         end
         redirect_to result_recipes_path(@recipe)
       rescue Faraday::TooManyRequestsError => e
-        # 既存のコード
       rescue => e
         Rails.logger.error "Error generating recipe: #{e.message}"
         Rails.logger.error e.backtrace.join("\n")
@@ -67,50 +66,80 @@ class RecipeConditionsController < ApplicationController
 
   def generate_prompt(category, cooking_time, ingredients)
     <<~PROMPT
-      あなたは優秀な料理人です。以下の条件に基づいて、具体的で実行可能なレシピを作成してください：
+      You are an excellent chef. Please create a specific and executable recipe based on the following conditions:
 
-      条件：
-      - カテゴリー: #{category}
-      - 調理時間: #{cooking_time}
-      - 主な材料: #{ingredients}
+      # 以下の条件に基づいてレシピを作成してください
+      Create a recipe based on the following conditions:
+        - Category: #{category}
+        - Cooking time: #{cooking_time}
+        - Main ingredients: #{ingredients}
 
-      以下の形式で、日本語でレシピを作成してください：
+      Important notes:
 
-      1. 料理名
-      [ここに料理名のみを1行で記入]
+      1. Recipe Basis:
+          # 既存の有名な料理をベースにレシピを生成すること
+        - Base the recipe on well-known, existing dishes.
+          # 全ての出力は1人分とすること
+        - All output must be for a single serving.
+        # なるべく栄養バランスの取れているレシピを生成してください。
+        - Generate a recipe with a well-balanced nutritional profile as much as possible.
 
-      2. 材料リスト（1人前）
-      - [材料1]: [分量]
-      - [材料2]: [分量]
+      2. Ingredient Handling:
+          # 入力に食材以外のものが含まれている場合は完全に無視すること
+        - Completely ignore any non-food items in the input ingredients.
+          # 食べられないもの、危険なもの、人名は絶対に材料として使用しないこと
+        - Never use inedible items, dangerous substances, or people's names as ingredients.
+          # 入力されていない必要な材料も追加すること
+        - Add any necessary ingredients that were not included in the input.
+
+      3. Output Requirements:
+          # 全ての情報は日本語のみで提供すること
+        - Provide all information in Japanese only.
+          # レシピ名、材料リスト、調理手順、栄養情報を含めること
+        - Include recipe name, ingredients list, cooking instructions, and nutritional information.
+        # 調理手順は丁寧かつ明確に記載してください。
+        - Provide cooking instructions that are detailed, clear, and easy to follow
+
+      4. Safety and Appropriateness:
+          # 全ての材料と手順が安全で消費に適していることを確認すること
+        - Ensure all ingredients and steps are safe and suitable for consumption.
+          # 必要に応じてレシピを調整し、安全性と料理の基準を維持すること
+        - Adapt the recipe if necessary to maintain safety and culinary standards.
+
+      If the ingredients are appropriate, please create a recipe in Japanese using the following format:
+
+      1. 
+      [Write only the recipe name in one line]
+
+      2.
+      - [Ingredient 1]: [Amount]
+      - [Ingredient 2]: [Amount]
       ...
 
-      3. 調理手順
-      1. [手順1]
-      2. [手順2]
+      3.
+      1. [Step 1]
+      2. [Step 2]
       ...
 
-      注意事項：
-      - 料理名は必ず記載し、既存の料理名を使用してください。
-      - 材料リストは1人前の分量を明確に記載してください。
-      - 調理手順は簡潔かつ明確に、番号付きで記載してください。
-      - 指定された食材で、ちゃんとした食材のものはなるべく使用してください。
-      - 食材ではないものだけを入力された場合、季節にあったレシピを紹介してください。
-      - 季節にあったレシピを紹介する場合、無駄な文章は打たず、季節にあったレシピを紹介します。(料理名)と付けくわえ、通常通りに生成してください
-      - 無理にすべての食材を私用しなくてもよいです。
-      - 各セクションの間に空行を入れてください。
-      このフォーマットに厳密に従ってレシピを作成してください。
+      4.
+      - カロリー: [数値] kcal
+      - タンパク質: [数値] g
+      - 脂質: [数値] g
+      - 炭水化物: [数値] g
+      - 食物繊維: [数値] g
+
     PROMPT
   end
 
   def parse_response(content)
     sections = content.split(/\n\n\d+\.\s+/)
-    name = sections[0]&.split("\n")&.first&.gsub(/^\d+\.\s*/, '')&.strip
     {
-      name: name,
+      name: sections[0]&.split("\n")&.first&.gsub(/^\d+\.\s*/, '')&.strip,
       cooking_time: params[:cooking_time],
       category: params[:category],
       ingredients: sections[1]&.strip,
-      instructions: sections[2]&.strip
+      instructions: sections[2]&.strip,
+      nutrition: sections[3]&.strip
     }
   rescue => e
     nil
