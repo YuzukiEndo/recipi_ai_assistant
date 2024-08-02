@@ -1,0 +1,16 @@
+<h1>お気に入りレシピ一覧</h1>
+
+<% if @favorite_recipes.present? %>
+  <ul class="favorite-recipes-list">
+    <% @favorite_recipes.each do |recipe| %>
+      <li class="favorite-recipe-item">
+        <h2><%= recipe.name %></h2>
+        <p>調理時間: <%= recipe.cooking_time_minutes %> 分</p>
+        <%= link_to '詳細を見る', recipe_path(recipe), class: 'btn btn-primary' %>
+        <%= button_to 'お気に入りから削除', favorite_path(recipe), method: :delete, class: 'btn btn-danger' %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>お気に入りのレシピはまだありません。</p>
+<% end %>

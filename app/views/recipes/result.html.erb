@@ -1,39 +1,48 @@
 <div class="bg_pattern Boxes"></div>
 <div class="result-recipe-container">
-  <% if @recipe && @recipe[:name].present? %>
-    <h2 class="result-recipe-title"><%= @recipe[:name] %></h2>
+  <% if @recipe_record && @recipe_record.name.present? %>
+    <h2 class="result-recipe-title"><%= @recipe_record.name %></h2>
+    
+    <% if current_user %>
+      <% favorite = current_user.favorites.find_by(recipe_id: @recipe_record.id) %>
+      <% if favorite %>
+        <%= button_to 'お気に入りから削除', favorite_path(favorite), method: :delete, class: 'btn btn-secondary' %>
+      <% else %>
+        <%= button_to 'お気に入りに追加', favorites_path(recipe_id: @recipe_record.id), method: :post, class: 'btn btn-primary' %>
+      <% end %>
+    <% end %>
     
     <div class="result-recipe-box">
       <div class="result-recipe-content">
         <div class="result-recipe-section result-ingredients-nutrition">
-          <% if @recipe[:ingredients].present? %>
+          <% if @recipe_record.ingredients.present? %>
             <div class="result-ingredients">
               <h3>材料（1人前）:</h3>
               <ul>
-                <% @recipe[:ingredients].split("\n").each do |ingredient| %>
+                <% @recipe_record.ingredients.split("\n").each do |ingredient| %>
                   <li><%= ingredient.strip %></li>
                 <% end %>
               </ul>
             </div>
           <% end %>
 
-          <% if @recipe[:nutrition].present? %>
-            <div class="result-nutrition">
-              <h3>栄養価情報（1人前）:</h3>
-              <ul>
-                <% @recipe[:nutrition].split("\n").each do |info| %>
-                  <li><%= info.strip %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
+          <div class="result-nutrition">
+            <h3>栄養価情報（1人前）:</h3>
+            <ul>
+              <li>カロリー: <%= @recipe_record.calories %> kcal</li>
+              <li>タンパク質: <%= @recipe_record.protein %> g</li>
+              <li>炭水化物: <%= @recipe_record.carbs %> g</li>
+              <li>脂質: <%= @recipe_record.fat %> g</li>
+              <li>食物繊維: <%= @recipe_record.fiber %> g</li>
+            </ul>
+          </div>
         </div>
 
-        <% if @recipe[:instructions].present? %>
+        <% if @recipe_record.instructions.present? %>
           <div class="result-recipe-section result-instructions">
             <h3>調理手順:</h3>
             <ol>
-              <% @recipe[:instructions].split(/\d+\./).reject(&:empty?).each do |step| %>
+              <% @recipe_record.instructions.split(/\d+\./).reject(&:empty?).each do |step| %>
                 <li><%= step.strip %></li>
               <% end %>
             </ol>

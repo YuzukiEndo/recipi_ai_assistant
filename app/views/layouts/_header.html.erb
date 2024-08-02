@@ -5,7 +5,7 @@
       <nav class="header-nav">
         <ul class="header-nav-list">
           <% if logged_in? %>
-            <li class="header-nav-item"><%= link_to 'お気に入り', '#', class: 'header-nav-link' %></li>
+            <%= link_to 'お気に入り', favorites_path, class: 'nav-link' %>
             <li class="header-nav-item"><%= link_to '作った', '#', class: 'header-nav-link' %></li>
             <li class="header-nav-item"><%= link_to '設定', '#', class: 'header-nav-link' %></li>
             <li class="header-nav-item"><%= link_to 'ログアウト', logout_path, method: :delete, class: 'header-nav-link' %></li>
