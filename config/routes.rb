@@ -21,6 +21,6 @@ Rails.application.routes.draw do
   delete 'logout', to: 'user_sessions#destroy'
 
   #お気に入り機能
-  resources :favorites, only: [:index, :create, :destroy]
-
+  resources :favorites, only: [:index, :create]
+  
 end

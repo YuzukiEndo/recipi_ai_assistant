@@ -370,6 +370,7 @@ h2 {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
   font-weight: 300;
+  margin-left: 50px;
 }
 
 .result-recipe-container {
@@ -451,14 +452,14 @@ h2 {
     border-left: solid 1px #666666;
     border-top: solid 1px #666666;
     top: 0;
-    left: 50px;
+    left: 60px;
   }
   
   &:after {
     border-right: solid 1px #666666;
     border-bottom: solid 1px #666666;
     bottom: 0;
-    right: -30px;
+    right: 0px;
   }
 }
 
@@ -477,14 +478,100 @@ h2 {
   background-size: 40px 40px;
 }
 
+.result-recipe-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.favorite-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.fa-star {
+  font-size: 40px;
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+.fa-star.favorite-active {
+  color: #666666;
+}
+
+.favorite-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.favorite-button .fa-star {
+  font-size: 40px;
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+.favorite-button .fa-star.favorite-active {
+  color: #666666;
+}
+
+.favorite-button {
+  position: absolute;
+  right: 450px;
+  top: 230px;
+}
+
+.favorite-recipes-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
 .favorite-recipes-list {
   list-style-type: none;
   padding: 0;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .favorite-recipe-item {
-  border: 1px solid #ddd;
-  margin-bottom: 20px;
-  padding: 15px;
-  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.favorite-button-list {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-right: 10px;
+}
+
+.recipe-name {
+  font-size: 18px;
+  color: #333;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.favorite-button-list .fa-star {
+  font-size: 20px;
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+.favorite-button-list .fa-star.favorite-star-list {
+  color: #666666;
 }

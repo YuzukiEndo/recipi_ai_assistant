@@ -34,6 +34,32 @@ document.addEventListener('animationend', function(event) {
   }
 });
 
+document.addEventListener('turbolinks:load', function() {
+  document.querySelectorAll('.favorite-button, .favorite-button-list').forEach(function(button) {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      var form = this.closest('form');
+      var url = form.action;
+      var starIcon = this.querySelector('.fa-star');
+
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
+        }
+      })
+      .then(() => {
+        if (this.classList.contains('favorite-button')) {
+          starIcon.classList.toggle('favorite-active');
+        } else if (this.classList.contains('favorite-button-list')) {
+          starIcon.classList.toggle('favorite-star-list');
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    });
+  });
+});
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

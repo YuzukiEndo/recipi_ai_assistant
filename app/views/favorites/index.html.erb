@@ -1,13 +1,14 @@
-<h1>お気に入りレシピ一覧</h1>
+<div class="bg_pattern Boxes"></div>
+<h1 class="favorite-recipes-title">お気に入りレシピ一覧</h1>
 
-<% if @favorite_recipes.present? %>
+<% if @favorite_recipes.any? %>
   <ul class="favorite-recipes-list">
-    <% @favorite_recipes.each do |recipe| %>
+    <% @favorite_recipes.each do |favorite| %>
       <li class="favorite-recipe-item">
-        <h2><%= recipe.name %></h2>
-        <p>調理時間: <%= recipe.cooking_time_minutes %> 分</p>
-        <%= link_to '詳細を見る', recipe_path(recipe), class: 'btn btn-primary' %>
-        <%= button_to 'お気に入りから削除', favorite_path(recipe), method: :delete, class: 'btn btn-danger' %>
+        <%= button_to favorites_path(recipe_id: favorite.recipe.id), method: :post, remote: true, class: 'favorite-button-list', data: { recipe_id: favorite.recipe.id } do %>
+          <i class="fas fa-star favorite-star-list"></i>
+        <% end %>
+        <%= link_to favorite.recipe.name, recipe_path(favorite.recipe), class: 'recipe-name' %>
       </li>
     <% end %>
   </ul>
