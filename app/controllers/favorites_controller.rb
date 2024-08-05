@@ -2,7 +2,7 @@ class FavoritesController < ApplicationController
   before_action :require_login
 
   def index
-    @favorite_recipes = current_user&.favorites&.includes(:recipe)
+    @favorite_recipes = current_user.favorites.includes(:recipe).page(params[:page]).per(5)
   end
 
   def create

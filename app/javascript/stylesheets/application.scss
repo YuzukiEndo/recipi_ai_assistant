@@ -387,7 +387,7 @@ h2 {
   text-align: center;
   padding-bottom: 10px;
   display: inline-block; 
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid #a0a0a0;
 }
 
 .result-recipe-content {
@@ -434,7 +434,7 @@ h2 {
   width: 100%;
   padding-top: 20px; 
   margin-top: 20px; 
-  border-top: 2px solid #ccc; 
+  border-top: 2px solid #a0a0a0; 
 }
 
 .result-recipe-box {
@@ -545,8 +545,8 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #ddd;
+  padding: 50px 0;
+  border-bottom: 1px solid #a0a0a0;
 }
 
 .favorite-button-list {
@@ -558,11 +558,11 @@ h2 {
 }
 
 .recipe-name {
-  font-size: 18px;
-  color: #333;
+  color: #666666;
   text-decoration: none;
+  font-size: 1.4rem;
   &:hover {
-    text-decoration: underline;
+    color: #cccccc;
   }
 }
 
@@ -574,4 +574,26 @@ h2 {
 
 .favorite-button-list .fa-star.favorite-star-list {
   color: #666666;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  
+  span {
+    margin: 0 5px;
+    a {
+      color: #666666;
+      text-decoration: none;
+      &:hover {
+        color: #cccccc;
+      }
+    }
+  }
+  
+  .current {
+    color: #303030;
+    font-weight: bold;
+  }
 }

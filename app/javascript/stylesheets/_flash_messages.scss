@@ -1,7 +1,7 @@
 .flash-message-container {
   position: fixed;
   top: 150px;
-  left: 50%;
+  left: 47%;
   transform: translateX(-50%);
   width: 80%;
   max-width: 600px;
@@ -28,16 +28,6 @@
 .flash-danger::before {
   content: "ERROR :: ";
   color: #dc3545;
-}
-
-.flash-info::before {
-  content: "INFO :: ";
-  color: #17a2b8;
-}
-
-.flash-warning::before {
-  content: "WARNING :: ";
-  color: #ffc107;
 }
 
 .typewriter {
