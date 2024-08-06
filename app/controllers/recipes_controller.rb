@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  skip_before_action :require_login, only: [:result]
+  skip_before_action :require_login, only: [:result, :show]
 
   def result
     @recipe = params.permit(:name, :cooking_time, :category, :ingredients, :instructions, :nutrition).to_h.symbolize_keys
@@ -19,11 +19,11 @@ class RecipesController < ApplicationController
           fiber: extract_nutrition_value(@recipe[:nutrition], '食物繊維')
         )
       rescue ActiveRecord::RecordInvalid => e
-        flash[:error] = "レシピの作成に失敗しました: #{e.message}"
+        flash[:error] = "レシピの作成に失敗しました。条件を変更して再試行してください。"
         redirect_to recipe_conditions_new_path and return
       end
     else
-      flash[:error] = "レシピの生成に失敗しました。再試行してください。"
+      flash[:error] = "レシピの生成に失敗しました。条件を変更して再試行してください。"
       redirect_to recipe_conditions_new_path and return
     end
     redirect_to recipe_path(@recipe_record)

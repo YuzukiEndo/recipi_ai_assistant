@@ -1,0 +1,28 @@
+.custom-footer {
+  width: 100%;
+  background-color: #fdfdfd;
+  padding: 0.5rem 0;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.footer-links {
+  a {
+    color: #666666;
+    text-decoration: none;
+    margin: 0 0.5rem;
+    
+    &:visited {
+      color: #666666;
+    }
+
+    &:hover {
+      color: #cccccc;
+    }
+  }
+}

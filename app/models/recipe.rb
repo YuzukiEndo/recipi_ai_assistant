@@ -6,4 +6,5 @@ class Recipe < ApplicationRecord
   validates :cooking_time_minutes, presence: true
   validates :ingredients, presence: true
   validates :instructions, presence: true
+  validates :name, presence: true, length: { maximum: 20 }
 end

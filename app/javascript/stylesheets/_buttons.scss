@@ -1,0 +1,58 @@
+.btn-svg,.recipe-btn-svg {
+  font-weight: 700;
+  line-height: 54px;
+  width: 204px;
+  height: 54px;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: transparent;
+  position: relative;
+  display: inline-block;
+  font-family: "Noto Serif JP", serif;
+  border: none;
+  outline: none;
+
+  &:hover {
+    background-color: rgba(180, 180, 180, 0.164);
+
+    span {
+      color: #4aecd7;
+    }
+
+    svg rect {
+      stroke: #4aecd7;
+    }
+  }
+
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    rect {
+      transition: all 400ms ease;
+      stroke: #666666;
+      stroke-width: 2;
+      stroke-dasharray: 200px, 16px;
+      stroke-dashoffset: 70px;
+    }
+  }
+
+  &:hover svg rect {
+    stroke-dashoffset: 284px;
+  }
+
+  span {
+    color: #666666;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.form-actions {
+  text-align: center;
+  margin-top: 80px;
+}

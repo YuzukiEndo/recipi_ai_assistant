@@ -4,8 +4,9 @@
       <%= link_to '<UTOPIA> CUSINE AI </UTOPIA>', root_path, class: 'header-brand' %>
       <nav class="header-nav">
         <ul class="header-nav-list">
+          <li class="header-nav-item"><%= link_to '使用方法', how_to_use_path, class: 'header-nav-link' %></li>
           <% if logged_in? %>
-            <%= link_to 'お気に入り', favorites_path, class: 'header-nav-link' %>
+            <li class="header-nav-item"><%= link_to 'お気に入り', favorites_path, class: 'header-nav-link' %></li>
             <li class="header-nav-item"><%= link_to 'ログアウト', logout_path, method: :delete, class: 'header-nav-link' %></li>
           <% else %>
             <li class="header-nav-item"><%= link_to '新規登録', signup_path, class: 'header-nav-link' %></li>

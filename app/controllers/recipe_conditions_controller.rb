@@ -1,5 +1,4 @@
 require 'openai'
-
 class RecipeConditionsController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
   before_action :check_rate_limit, only: [:create]
@@ -12,7 +11,6 @@ class RecipeConditionsController < ApplicationController
 
   def create
     if valid_form_input?
-      retries = 0
       begin
         cache_key = "recipe_#{params[:category]}_#{params[:cooking_time]}_#{params[:ingredients]}"
         @recipe = Rails.cache.fetch(cache_key, expires_in: 1.hour) do
@@ -25,25 +23,18 @@ class RecipeConditionsController < ApplicationController
               messages: [{ role: "user", content: prompt }],
               temperature: 0.7,
             })
-          Rails.logger.debug "API Response: #{response.inspect}"
-          parsed_recipe = parse_response(response.dig("choices", 0, "message", "content"))
-          Rails.logger.debug "Parsed Recipe: #{parsed_recipe.inspect}"
-          parsed_recipe
+          parse_response(response.dig("choices", 0, "message", "content"))
         end
         if @recipe.nil? || @recipe.empty?
           raise "Failed to generate recipe"
         end
         redirect_to result_recipes_path(@recipe)
-      rescue Faraday::TooManyRequestsError => e
       rescue => e
-        flash[:error] = "レシピの生成中にエラーが発生しました。詳細: #{e.message}"
+        flash[:error] = "レシピの生成に失敗しました。別の食材で再試行してください。"
         redirect_to recipe_conditions_new_path
       end
     else
       flash[:danger] = '不適切な入力データです。全ての項目を入力してください。'
-      @categories = ['和風', '洋風', '中華風']
-      @cooking_times = ['短時間', '標準', '長時間']
-      @ingredients = Ingredient.all
       redirect_to recipe_conditions_new_path
     end
   end
@@ -75,34 +66,32 @@ class RecipeConditionsController < ApplicationController
       Important notes:
 
       1. Recipe Basis:
-          # 既存の有名な料理をベースにレシピを生成すること
-        - Base the recipe on well-known, existing dishes.
-          # 全ての出力は1人分とすること
+        # 既存の料理をベースにしつつ、創造的なアレンジも可能です
+        - Base the recipe on existing dishes, but feel free to be creative 
+        # 全ての出力は1人分とすること
         - All output must be for a single serving.
         # なるべく栄養バランスの取れているレシピを生成してください。
         - Generate a recipe with a well-balanced nutritional profile as much as possible.
 
       2. Ingredient Handling:
-          # 入力に食材以外のものが含まれている場合は完全に無視すること
+        # 入力に食材以外のものが含まれている場合は完全に無視すること
         - Completely ignore any non-food items in the input ingredients.
-          # 食べられないもの、危険なもの、人名は絶対に材料として使用しないこと
+        # 食べられないもの、危険なもの、人名は絶対に材料として使用しないこと
         - Never use inedible items, dangerous substances, or people's names as ingredients.
-          # 入力されていない必要な材料も追加すること
+        # 入力されていない必要な材料も追加すること
         - Add any necessary ingredients that were not included in the input.
 
       3. Output Requirements:
-          # 全ての情報は日本語のみで提供すること
+        # 全ての情報は日本語のみで提供すること
         - Provide all information in Japanese only.
-          # レシピ名、材料リスト、調理手順、栄養情報を含めること
+        # レシピ名、材料リスト、調理手順、栄養情報を含めること
         - Include recipe name, ingredients list, cooking instructions, and nutritional information.
         # 調理手順は丁寧かつ明確に記載してください。
         - Provide cooking instructions that are detailed, clear, and easy to follow
 
       4. Safety and Appropriateness:
-          # 全ての材料と手順が安全で消費に適していることを確認すること
+        # 全ての材料と手順が安全で消費に適していることを確認すること
         - Ensure all ingredients and steps are safe and suitable for consumption.
-          # 必要に応じてレシピを調整し、安全性と料理の基準を維持すること
-        - Adapt the recipe if necessary to maintain safety and culinary standards.
 
       If the ingredients are appropriate, please create a recipe in Japanese using the following format:
 

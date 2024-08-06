@@ -1,0 +1,57 @@
+.recipe-form,
+.signup-form,
+.login-form {
+  .recipe-form-group,
+  .form-group {
+    position: relative;
+    margin: 32px 0;
+  }
+
+  .recipe-form-control,
+  .form-control {
+    display: block;
+    width: 100%;
+    height: 36px;
+    border-width: 0 0 2px 0;
+    border-color: #666666;
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 400;
+    background-color: transparent;
+    font-family: "Noto Sans JP", sans-serif;
+    color: #5f5f5f;
+    padding-top: 20px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: "Noto Serif JP", serif;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #888;
+  }
+}
+
+.recipe-form-actions {
+  text-align: center;
+  margin-top: 80px;
+}
+
+.recipe-form-group {
+  margin-bottom: 20px;
+  padding-left: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+  h3 {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #666666;
+  }
+}

@@ -1,0 +1,50 @@
+.header {
+  width: 100%;
+  background-color: #fdfdfd;
+  padding: 2.5rem 0;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-brand {
+  font-family: "Julius Sans One", sans-serif;
+  font-size: 1.8rem;
+  color: #a1dfd1;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: -300px;
+  &:hover {
+    color: #9ef0e5;
+  }
+}
+
+.header-nav-list {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  transform: translateX(300px);
+}
+
+.header-nav-item {
+  margin-left: 1.5rem;
+}
+
+.header-nav-link {
+  color: #666666;
+  text-decoration: none;
+  font-size: 1rem;
+  &:hover {
+    color: #cccccc;
+  }
+}

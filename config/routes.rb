@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   root 'pages#home'
 
+  get 'how_to_use', to: 'pages#how_to_use'
+  get 'terms_of_service', to: 'pages#terms_of_service'
+  get 'privacy_policy', to: 'pages#privacy_policy'
+  get 'contact', to: 'pages#contact'
+  post 'contact', to: 'pages#submit_contact'
+
   # レシピ関連のルート
   get 'recipe_conditions/new', to: 'recipe_conditions#new', as: 'recipe_conditions_new'
   post 'recipe_conditions', to: 'recipe_conditions#create'
@@ -22,5 +28,5 @@ Rails.application.routes.draw do
 
   #お気に入り機能
   resources :favorites, only: [:index, :create]
-  
+
 end
