@@ -14,20 +14,48 @@ import * as ActiveStorage from "@rails/activestorage"
 
 import "channels"
 
-import "bootstrap"
-
 import '../stylesheets/application.scss'
 
+
+// フラッシュメッセージの自動フェードアウト
 document.addEventListener('turbolinks:load', function() {
-  const inputs = document.querySelectorAll('.js-input, .recipe-js-input');
-  
-  inputs.forEach(function(input) {
-    input.addEventListener('keyup', function() {
-      if (this.value) {
-        this.classList.add('not-empty');
-      } else {
-        this.classList.remove('not-empty');
-      }
+  const flashMessages = document.querySelectorAll('.flash-message');
+  flashMessages.forEach(message => {
+    setTimeout(() => {
+      message.style.animation = 'fadeOut 0.5s forwards';
+    }, 5000);
+  });
+});
+
+// フェードアウトアニメーション終了後のメッセージ削除
+document.addEventListener('animationend', function(event) {
+  if (event.animationName === 'fadeOut') {
+    event.target.remove();
+  }
+});
+
+document.addEventListener('turbolinks:load', function() {
+  document.querySelectorAll('.favorite-button, .favorite-button-list').forEach(function(button) {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      var form = this.closest('form');
+      var url = form.action;
+      var starIcon = this.querySelector('.fa-star');
+
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
+        }
+      })
+      .then(() => {
+        if (this.classList.contains('favorite-button')) {
+          starIcon.classList.toggle('favorite-active');
+        } else if (this.classList.contains('favorite-button-list')) {
+          starIcon.classList.toggle('favorite-star-list');
+        }
+      })
+      .catch(error => console.error('Error:', error));
     });
   });
 });

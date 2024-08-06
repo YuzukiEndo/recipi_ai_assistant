@@ -1,3 +1,19 @@
+@import 'flash_messages';
+@import 'header';
+@import 'footer';
+@import 'signup_container';
+@import 'buttons';
+@import 'scrolling_text';
+@import 'power_button';
+@import 'recipe_container';
+@import 'recipe_form';
+@import 'radio_button';
+@import 'result_recipe';
+@import '_result_ingredients_nutrition';
+@import '_result_instructions';
+@import 'favorite_button';
+@import 'favorite_recipes_list';
+@import 'how_to_use';
 
 body {
   display: flex;
@@ -21,454 +37,48 @@ main {
   padding-bottom: 60px;
 }
 
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
 .pt-9 { 
   padding-top: 9rem !important; 
 }
 
-.header {
-  width: 100%;
-  background-color: #fdfdfd;
-  padding: 2.5rem 0;
+.bg_pattern {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ecebe0;
+  opacity: 0.4;
+  z-index: -1;
+}
+.Boxes {
+  background-image:  linear-gradient(#dfdfdf 2px, transparent 2px), linear-gradient(to right, #dfdfdf 2px, #ecebe0 2px);
+  background-size: 40px 40px;
 }
 
-.header-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-.header-content {
+.pagination {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.header-brand {
-  font-family: "Julius Sans One", sans-serif;
-  font-size: 1.8rem;
-  color: #a1dfd1;
-  text-decoration: none;
-  font-weight: bold;
-  margin-left: -300px;
-  &:hover {
-    color: #9ef0e5;
-  }
-}
-
-.header-nav-list {
-  display: flex;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  transform: translateX(300px);
-}
-
-.header-nav-item {
-  margin-left: 1.5rem;
-}
-
-.header-nav-link {
-  color: #666666;
-  text-decoration: none;
-  font-size: 1rem;
-  &:hover {
-    color: #cccccc;
-  }
-}
-
-.custom-footer {
-  width: 100%;
-  background-color: #fdfdfd;
-  padding: 0.5rem 0;
-}
-
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  text-align: center;
-}
-
-.footer-links {
-  a {
-    color: #666666;
-    text-decoration: none;
-    margin: 0 0.5rem;
-    
-    &:visited {
+  justify-content: center;
+  margin-top: 50px;
+  
+  span {
+    margin: 0 5px;
+    a {
       color: #666666;
-    }
-
-    &:hover {
-      color: #cccccc;
-    }
-  }
-}
-
-.signup-container, .login-container {
-  max-width: 500px;
-  margin: 25px auto;
-  position: relative;
-  padding: 20px;
-  border-radius: 8px;
-}
-
-h2 {
-  text-align: center;
-  font-family: "Noto Serif JP", serif;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  font-size: 36px;
-  line-height: 48px;
-  padding-bottom: 48px;
-  color: #666666;
-}
-
-.signup-form, .login-form {
-  .form-group {
-    position: relative;
-    margin: 32px 0;
-  }
-
-  .form-control {
-    display: block;
-    width: 100%;
-    height: 36px;
-    border-width: 0 0 2px 0;
-    border-color: #666666;
-    font-size: 18px;
-    line-height: 26px;
-    font-weight: 400;
-    background-color: transparent;
-    font-family: "Noto Sans JP", sans-serif;
-    color: #5f5f5f;
-
-    &:focus {
-      outline: none;
-    }
-
-    &:focus,
-    &.not-empty {
-      + label {
-        transform: translateY(-24px);
+      text-decoration: none;
+      &:hover {
+        color: #cccccc;
       }
     }
   }
-
-  label {
-    position: absolute;
-    left: 0;
-    bottom: 11px;
-    font-family: "Noto Serif JP", serif;
-    font-size: 18px;
-    line-height: 26px;
-    font-weight: 400;
-    color: #888;
-    cursor: text;
-    transition: transform .2s ease-in-out;
-  }
-}
-
-a.btn-svg {
-  font-weight: 700;
-  line-height: 54px;
-  width: 204px;
-  height: 54px;
-  padding: 0;
-  cursor: pointer;
-  text-decoration: none;
-  background-color: transparent;
-  position: relative;
-  display: inline-block;
-  font-family: "Noto Serif JP", serif;
-
-  &:hover {
-
-    background-color: rgba(180, 180, 180, 0.164);
-
-    span {
-      color: #4aecd7;
-    }
-
-    svg rect {
-      stroke: #4aecd7;
-    }
-  }
-}
-
-a.btn-svg svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-a.btn-svg svg rect {
-  transition: all 400ms ease;
-  stroke: #666666;
-  stroke-width: 2;
-  stroke-dasharray: 200px, 16px;
-  stroke-dashoffset: 70px;
-}
-
-a.btn-svg:hover svg rect {
-  stroke-dashoffset: 284px;
-}
-
-a.btn-svg span {
-  color: #666666;
-  position: relative;
-  z-index: 1;
-}
-
-.form-actions {
-  text-align: center;
-  margin-top: 80px;
-}
-
-
-.alert {
-  font-size: 18px;
-  background-color: transparent;
-  border: none;
-  color: #666666;
-  font-family: "Noto Sans JP", sans-serif;
-}
-
-.alert-success::before {
-  content: "SUCCESS :: ";
-  color: #28a745;
-}
-
-.alert-danger::before {
-  content: "ERROR :: ";
-  color: #dc3545;
-}
-
-.scrolling-text-container {
-  overflow: hidden;
-  width: 100%;
-  height: 50px;
-  color: #9b9b9b;
-  position: fixed;
-  bottom: 210px;
-}
-
-.scrolling-text {
-  white-space: nowrap;
-  animation: scroll 40s linear infinite;
-  font-size: 40px;
-  font-family: "Noto Sans JP", sans-serif;
-}
-
-@keyframes scroll {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
-}
-
-.power-button-container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.power-icon {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 8px rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
-}
-
-.power-icon:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 0 0 0 12px rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
-}
-
-.power-icon:active {
-  transform: scale(0.95);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 20px rgba(255, 255, 255, 0.1);
-}
-
-.recipe-container {
-  max-width: 500px;
-  margin: 20px auto;
-  position: relative;
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.recipe-container h2 {
-  text-align: center;
-  font-family: "Noto Serif JP", serif;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  font-size: 36px;
-  line-height: 48px;
-  padding-bottom: 48px;
-  color: #666666;
-}
-
-.recipe-form {
-  .recipe-form-group {
-    position: relative;
-    margin: 32px 0;
-  }
-
-  .recipe-form-control {
-    display: block;
-    width: 100%;
-    height: 36px;
-    border-width: 0 0 2px 0;
-    border-color: #666666;
-    font-size: 18px;
-    line-height: 26px;
-    font-weight: 400;
-    background-color: transparent;
-    font-family: "Noto Sans JP", sans-serif;
-    color: #5f5f5f;
-
-    &:focus {
-      outline: none;
-    }
-
-    &:focus,
-    &.not-empty {
-      + label {
-        transform: translateY(-24px);
-      }
-    }
-  }
-
-  label {
-    position: absolute;
-    left: 0;
-    bottom: 11px;
-    font-family: "Noto Serif JP", serif;
-    font-size: 18px;
-    line-height: 26px;
-    font-weight: 400;
-    color: #888;
-    cursor: text;
-    transition: transform .2s ease-in-out;
-  }
-}
-
-.recipe-btn-svg {
-  font-weight: 700;
-  line-height: 54px;
-  width: 204px;
-  height: 54px;
-  padding: 0;
-  cursor: pointer;
-  text-decoration: none;
-  background-color: transparent;
-  position: relative;
-  display: inline-block;
-  font-family: "Noto Serif JP", serif;
-
-  &:hover {
-    background-color: rgba(180, 180, 180, 0.164);
-
-    span {
-      color: #4aecd7;
-    }
-
-    svg rect {
-      stroke: #4aecd7;
-    }
-  }
-}
-
-.recipe-btn-svg svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.recipe-btn-svg svg rect {
-  transition: all 400ms ease;
-  stroke: #666666;
-  stroke-width: 2;
-  stroke-dasharray: 200px, 16px;
-  stroke-dashoffset: 70px;
-}
-
-.recipe-btn-svg:hover svg rect {
-  stroke-dashoffset: 284px;
-}
-
-.recipe-btn-svg span {
-  color: #666666;
-  position: relative;
-  z-index: 1;
-}
-
-.recipe-form-actions {
-  text-align: center;
-  margin-top: 80px;
-}
-
-.radio-group {
-  margin-bottom: 15px;
-}
-
-.radio-group input[type="radio"] {
-  margin-right: 5px;
-}
-
-.radio-group label {
-  margin-right: 15px;
-  position: static;
-  cursor: pointer;
-}
-
-.recipe-form-group h3 {
-  margin-bottom: 10px;
-  font-size: 18px;
-  color: #666666;
-}
-
-.radio-group {
-  input[type="radio"] {
-    display: none;
-  }
-
-  label {
-    position: relative;
-    padding-left: 30px;
-    cursor: pointer;
-    margin-right: 15px;
-
-    &:before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 20px;
-      height: 20px;
-      border: 2px solid #666666;
-      border-radius: 50%;
-      background-color: #fff;
-    }
-  }
-
-  input[type="radio"]:checked + label {
-    &:after {
-      content: '';
-      position: absolute;
-      left: 4.2px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background-color: #666666;
-    }
+  
+  .current {
+    color: #303030;
+    font-weight: bold;
   }
 }

@@ -1,0 +1,9 @@
+.result-ingredients-nutrition {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.result-ingredients, .result-nutrition {
+  flex-basis: 48%;
+}

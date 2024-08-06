@@ -1,0 +1,19 @@
+<div class="bg_pattern Boxes"></div>
+<h1 class="favorite-recipes-title">お気に入りレシピ一覧</h1>
+
+<% if @favorite_recipes.any? %>
+  <ul class="favorite-recipes-list">
+    <% @favorite_recipes.each do |favorite| %>
+      <li class="favorite-recipe-item">
+        <%= button_to favorites_path(recipe_id: favorite.recipe.id), method: :post, remote: true, class: 'favorite-button-list', data: { recipe_id: favorite.recipe.id } do %>
+          <i class="fas fa-star favorite-star-list"></i>
+        <% end %>
+        <%= link_to favorite.recipe.name, recipe_path(favorite.recipe), class: 'recipe-name' %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>お気に入りのレシピはまだありません。</p>
+<% end %>
+
+<%= paginate @favorite_recipes %>

@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_25_022845) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_05_045113) do
   create_table "categories", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "favorites", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "recipe_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_favorites_on_recipe_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "ingredients", charset: "utf8mb4", force: :cascade do |t|
@@ -23,6 +32,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_25_022845) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_ingredients_on_category_id"
+  end
+
+  create_table "recipes", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.integer "cooking_time_minutes"
+    t.text "ingredients"
+    t.text "instructions"
+    t.float "calories"
+    t.float "protein"
+    t.float "carbs"
+    t.float "fat"
+    t.float "fiber"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "category"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
@@ -34,5 +58,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_25_022845) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "favorites", "recipes"
+  add_foreign_key "favorites", "users"
   add_foreign_key "ingredients", "categories"
 end

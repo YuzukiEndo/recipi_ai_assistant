@@ -34,6 +34,11 @@ gem 'bootstrap', '~> 5.3.0'
 
 gem 'ruby-openai'
 
+gem 'dotenv-rails'
+
+gem 'kaminari'
+
+gem 'rails-i18n'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,16 +1,22 @@
 Rails.application.routes.draw do
   root 'pages#home'
 
+  get 'how_to_use', to: 'pages#how_to_use'
+  get 'terms_of_service', to: 'pages#terms_of_service'
+  get 'privacy_policy', to: 'pages#privacy_policy'
+  get 'contact', to: 'pages#contact'
+  post 'contact', to: 'pages#submit_contact'
+
   # レシピ関連のルート
-  get 'recipe_conditions/new', to: 'recipe_conditions#new'
+  get 'recipe_conditions/new', to: 'recipe_conditions#new', as: 'recipe_conditions_new'
   post 'recipe_conditions', to: 'recipe_conditions#create'
 
-  #条件選択のルート
-  get 'ingredients/index'
-  get 'ingredients/show'
-  get 'categories/index'
-  get 'categories/show'
-  
+  resources :recipes, only: [:show] do
+    collection do
+      get 'result'  # レシピ生成完了画面用
+    end
+  end
+
   # ユーザー関連のルート
   resources :users, only: %i[new create]
   get 'signup', to: 'users#new'
@@ -18,6 +24,9 @@ Rails.application.routes.draw do
   # セッション関連のルート
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
-  get '/logout', to: 'user_sessions#destroy', as: :logout
   delete 'logout', to: 'user_sessions#destroy'
+
+  #お気に入り機能
+  resources :favorites, only: [:index, :create]
+
 end

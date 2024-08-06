@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
-  before_action :require_login, except: [:home, :new]
+  before_action :require_login, except: [:home, :new, :how_to_use, :privacy_policy, :contact, :terms_of_service]
   before_action :set_cache_headers
-
+  
   private
 
   def not_authenticated
