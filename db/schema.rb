@@ -11,13 +11,16 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_08_05_045113) do
-  create_table "categories", charset: "utf8mb4", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "favorites", charset: "utf8mb4", force: :cascade do |t|
+  create_table "favorites", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "recipe_id", null: false
     t.datetime "created_at", null: false
@@ -26,7 +29,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_05_045113) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
-  create_table "ingredients", charset: "utf8mb4", force: :cascade do |t|
+  create_table "ingredients", force: :cascade do |t|
     t.string "name"
     t.bigint "category_id", null: false
     t.datetime "created_at", null: false
@@ -34,7 +37,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_05_045113) do
     t.index ["category_id"], name: "index_ingredients_on_category_id"
   end
 
-  create_table "recipes", charset: "utf8mb4", force: :cascade do |t|
+  create_table "recipes", force: :cascade do |t|
     t.string "name"
     t.integer "cooking_time_minutes"
     t.text "ingredients"
@@ -49,7 +52,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_05_045113) do
     t.string "category"
   end
 
-  create_table "users", charset: "utf8mb4", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
     t.string "salt"

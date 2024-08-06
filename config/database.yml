@@ -1,11 +1,11 @@
 default: &default
-  adapter: mysql2
-  encoding: utf8mb4
+  adapter: postgresql
+  encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password: password  # Docker Composeで設定したMySQLのrootパスワード
-  host: db  # Docker Composeで定義されたMySQLサービス名
-  port: 3306
+  username: postgres
+  password: password
+  host: db 
+  port: 5432 
 
 development:
   <<: *default

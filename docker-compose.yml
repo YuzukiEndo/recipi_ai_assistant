@@ -1,15 +1,15 @@
 version: '3'
 services:
   db:
-    image: mysql:5.7
+    image: postgres:13
     platform: linux/amd64
     environment:
       TZ: Asia/Tokyo
-      MYSQL_ROOT_PASSWORD: password
+      POSTGRES_PASSWORD: password
     volumes:
-      - mysql_data:/var/lib/mysql
+      - postgres_data:/var/lib/postgresql/data
     ports:
-      - 3307:3306
+      - 5433:5432
 
   web:
     build: .
@@ -28,6 +28,7 @@ services:
       TZ: Asia/Tokyo
       SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub
       NODE_OPTIONS: --openssl-legacy-provider
+      DATABASE_URL: postgres://postgres:password@db:5432/recipi_ai_assistant_development
     ports:
       - "3000:3000"
     depends_on:
@@ -41,6 +42,6 @@ services:
       - 4444:4444
 
 volumes:
-  mysql_data:
+  postgres_data:
   bundle_data:
   node_modules:
