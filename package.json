@@ -27,5 +27,6 @@
   "scripts": {
     "start": "node index.js",
     "build": "webpack --config webpack.config.js"
+    "heroku-postbuild": "webpack --config webpack.config.js"
   }
 }
