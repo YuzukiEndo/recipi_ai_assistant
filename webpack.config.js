@@ -12,17 +12,8 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-            plugins: [
-              '@babel/plugin-proposal-private-methods',
-              '@babel/plugin-proposal-private-property-in-object'
-            ]
-          }
-        }
+        use: 'babel-loader'
       }
     ]
   }
-}
+};
