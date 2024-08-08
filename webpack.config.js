@@ -7,14 +7,21 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'app/assets/builds'),
   },
-  resolve: {
-    extensions: ['.js', '.jsx', '.scss', '.css']
-  },
   module: {
     rules: [
       {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: [
+              '@babel/plugin-proposal-private-methods',
+              '@babel/plugin-proposal-private-property-in-object'
+            ]
+          }
+        }
       }
     ]
   }
