@@ -44,7 +44,7 @@
     "heroku-postbuild": "NODE_OPTIONS=--openssl-legacy-provider webpack --config webpack.config.js"
   },
   "engines": {
-    "node": "20.x",
+    "node": "16.x",
     "yarn": "1.22.x"
   }
 }
