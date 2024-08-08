@@ -16,7 +16,6 @@ import "channels"
 
 import '../stylesheets/application.scss'
 
-
 // フラッシュメッセージの自動フェードアウト
 document.addEventListener('turbolinks:load', function() {
   const flashMessages = document.querySelectorAll('.flash-message');

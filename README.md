@@ -1,24 +1,25 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+■ 機能候補
 
-Things you may want to cover:
+・現状作ろうと思っている機能
+1.ログイン、ログアウト機能
+2.パスワードリセット機能
+3.メールアドレス編集機能
+4.お気に入り機能
+5.AIによるレシピ生成機能
+6.未ログイン状態によるレシピ生成
+7.栄養価を保存
+8.シェア機能(LINE,X)
 
-* Ruby version
+・MVPリリース時に作っていたいもの
+1.ログイン、ログアウト機能
+4.お気に入り機能
+5.AIによるレシピ生成機能
+6.未ログイン状態によるレシピ生成
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+・本リリースまでに作っていたいもの
+2.パスワードリセット機能
+3.メールアドレス変更機能
+7.栄養価を保存
+8.シェア機能(LINE,X)
