@@ -30,5 +30,13 @@ module.exports = {
       filename: '[name].css'
     })
   ],
-  node: false
+  resolve: {
+    fallback: {
+      dgram: false,
+      fs: false,
+      net: false,
+      tls: false,
+      child_process: false,
+    },
+  },
 };
