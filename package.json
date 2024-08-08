@@ -25,8 +25,11 @@
     "webpack-dev-server": "^3"
   },
   "scripts": {
-  "start": "node index.js",
-  "build": "webpack --config webpack.config.js",
-  "heroku-postbuild": "webpack --config webpack.config.js"
+    "start": "node index.js",
+    "build": "webpack --config webpack.config.js",
+    "heroku-postbuild": "webpack --config webpack.config.js"
+  },
+  "engines": {
+    "node": "20.x"
   }
 }
