@@ -5,8 +5,10 @@ module.exports = {
   mode: 'production',
   entry: './app/javascript/packs/application.js',
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'app/assets/builds'),
+    filename: 'js/[name]-[contenthash].js',
+    chunkFilename: 'js/[name]-[contenthash].chunk.js',
+    path: path.resolve(__dirname, 'public/packs'),
+    publicPath: '/packs/'
   },
   module: {
     rules: [
@@ -27,12 +29,11 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].css'
+      filename: 'css/[name]-[contenthash].css',
+      chunkFilename: 'css/[name]-[contenthash].chunk.css'
     })
   ],
   resolve: {
-    fallback: {
-      global: require.resolve('global')
-    }
+    extensions: ['.js', '.scss', '.css']
   }
 };
