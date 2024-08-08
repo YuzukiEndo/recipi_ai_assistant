@@ -34,5 +34,6 @@ module.exports = {
     fallback: {
       global: require.resolve('global')
     }
-  }
+  },
+  node: false
 };
