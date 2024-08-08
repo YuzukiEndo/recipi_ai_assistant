@@ -7,6 +7,9 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'app/assets/builds'),
   },
+  resolve: {
+    extensions: ['.js', '.jsx', '.scss', '.css']
+  },
   module: {
     rules: [
       {
