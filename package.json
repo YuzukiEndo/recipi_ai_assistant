@@ -42,7 +42,7 @@
   "scripts": {
     "start": "node index.js",
     "build": "webpack --config webpack.config.js",
-    "heroku-postbuild": "webpack --config webpack.config.js"
+    "heroku-postbuild": "webpack --config ./config/webpack/production.js"
   },
   "engines": {
     "node": "16.x",
