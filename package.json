@@ -45,6 +45,6 @@
     "heroku-postbuild": "webpack --config webpack.config.js"
   },
   "engines": {
-    "node": "14.x",
+    "node": "14.x"
   }
 }
