@@ -40,8 +40,8 @@
   },
   "scripts": {
   "start": "node index.js",
-  "build": "NODE_OPTIONS=--openssl-legacy-provider webpack --config webpack.config.js",
-  "heroku-postbuild": "NODE_OPTIONS=--openssl-legacy-provider webpack --config webpack.config.js"
+  "build": "webpack --config webpack.config.js",
+  "heroku-postbuild": "webpack --config webpack.config.js"
   },
   "engines": {
     "node": "20.x",
