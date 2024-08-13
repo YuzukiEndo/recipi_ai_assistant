@@ -1,0 +1,25 @@
+<div class="bg_pattern Boxes"></div>
+<div class="password-reset-container-extended">
+  <h2>パスワードリセット</h2>
+
+  <%= form_with model: @user, url: password_reset_path(@token), method: :patch, local: true, class: "login-form" do |f| %>
+    <div class="form-group">
+      <%= f.password_field :password, class: "form-control js-input", placeholder: " " %>
+      <%= f.label :password, "新しいパスワード" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.password_field :password_confirmation, class: "form-control js-input", placeholder: " " %>
+      <%= f.label :password_confirmation, "パスワード（確認）" %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button type: 'submit', class: 'btn-svg' do %>
+        <svg>
+          <rect x="2" y="2" rx="0" fill="none" width="200" height="50"></rect>
+        </svg>
+        <span><%= t('defaults.update') %></span>
+      <% end %>
+    </div>
+  <% end %>
+</div>

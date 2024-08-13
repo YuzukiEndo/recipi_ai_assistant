@@ -29,4 +29,8 @@ Rails.application.routes.draw do
   #お気に入り機能
   resources :favorites, only: [:index, :create]
 
+  #パスワードリセット
+  resources :password_resets, only: [:new, :create, :edit, :update]
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
 end

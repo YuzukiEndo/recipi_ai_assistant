@@ -6,3 +6,6 @@ ja:
       previous: "&lsaquo; 前"
       next: "次 &rsaquo;"
       truncate: "..."
+  password_resets:
+    create:
+      success: "パスワードリセット手順を記載したメールを送信しました。"

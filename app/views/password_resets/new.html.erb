@@ -1,0 +1,20 @@
+<div class="bg_pattern Boxes"></div>
+<div class="password-reset-container">
+  <h2>パスワードリセット申請</h2>
+
+  <%= form_with(url: password_resets_path, local: true, class: "login-form") do |f| %>
+    <div class="form-group">
+      <%= f.email_field :email, class: "form-control js-input", placeholder: " " %>
+      <%= f.label :email, "メールアドレス" %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button type: 'submit', class: 'btn-svg' do %>
+        <svg>
+          <rect x="2" y="2" rx="0" fill="none" width="200" height="50"></rect>
+        </svg>
+        <span>送信</span>
+      <% end %>
+    </div>
+  <% end %>
+</div>
