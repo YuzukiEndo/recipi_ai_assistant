@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'privacy_policy', to: 'pages#privacy_policy'
   get 'contact', to: 'pages#contact'
   post 'contact', to: 'pages#submit_contact'
+  get 'password_resets', to: 'password_resets#new'
 
   # レシピ関連のルート
   get 'recipe_conditions/new', to: 'recipe_conditions#new', as: 'recipe_conditions_new'
