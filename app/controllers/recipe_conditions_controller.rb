@@ -47,8 +47,8 @@ class RecipeConditionsController < ApplicationController
     count += 1
     Rails.cache.write(key, count, expires_in: 1.hour)
     
-    if count > 5
-      flash[:error] = "リクエスト回数の制限に達しました。しばらく待ってから再試行してください。"
+    if count > 20
+      flash[:error] = "レシピ生成回数の制限に達しました。1時間後に再試行してください。"
       redirect_to recipe_conditions_new_path
     end
   end
