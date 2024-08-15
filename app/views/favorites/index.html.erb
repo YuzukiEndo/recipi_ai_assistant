@@ -13,7 +13,9 @@
     <% end %>
   </ul>
 <% else %>
-  <p>お気に入りのレシピはまだありません。</p>
+  <div class="no-favorites-message">
+    <p>お気に入りのレシピはまだありません。</p>
+  </div>
 <% end %>
 
 <%= paginate @favorite_recipes %>
