@@ -1,9 +1,9 @@
 .flash-message-container {
   position: fixed;
   top: 150px;
-  left: 47%;
+  left: 50%;
   transform: translateX(-50%);
-  width: 80%;
+  width: 100%;
   max-width: 600px;
   z-index: 1050;
   text-align: center;
@@ -18,6 +18,7 @@
   padding: 15px;
   border-radius: 4px;
   margin-bottom: 20px;
+  right: 10%
 }
 
 .flash-success::before {

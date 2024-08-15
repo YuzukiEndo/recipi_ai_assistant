@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       auto_login(@user)
-      flash[:success] = '登録が完了しました。UTOPIAへようこそ。健康維持のための指示に従ってください。'
+      flash[:success] = '登録が完了しました。健康維持のための指示に従ってください。'
       redirect_to root_path
     else
       flash.now[:danger] = '登録失敗。不適切な入力データです。再試行してください。'

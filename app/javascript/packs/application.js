@@ -22,7 +22,7 @@ document.addEventListener('turbolinks:load', function() {
   flashMessages.forEach(message => {
     setTimeout(() => {
       message.style.animation = 'fadeOut 0.5s forwards';
-    }, 5000);
+    }, 10000);
   });
 });
 
