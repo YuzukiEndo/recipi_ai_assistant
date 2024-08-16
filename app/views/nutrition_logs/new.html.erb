@@ -1,0 +1,28 @@
+<div class="bg_pattern Boxes"></div>
+<h1>今回あなたが摂取した栄養素</h1>
+<%= form_with(model: @nutrition_log, local: true) do |form| %>
+  <%= form.hidden_field :recipe_id, value: @recipe.id %>
+  <div>
+    <p>カロリー: <%= @nutrition_log.calories %> kcal</p>
+    <p>タンパク質: <%= @nutrition_log.protein %> g</p>
+    <p>脂質: <%= @nutrition_log.fat %> g</p>
+    <p>炭水化物: <%= @nutrition_log.carbs %> g</p>
+    <p>食物繊維: <%= @nutrition_log.fiber %> g</p>
+  </div>
+
+  <%= form.hidden_field :calories %>
+  <%= form.hidden_field :protein %>
+  <%= form.hidden_field :fat %>
+  <%= form.hidden_field :carbs %>
+  <%= form.hidden_field :fiber %>
+  <%= form.hidden_field :date %>
+
+  <div class="recipe-form-actions">
+    <%= form.button type: 'submit', class: 'recipe-btn-svg' do %>
+      <svg>
+        <rect x="2" y="2" rx="0" fill="none" width="200" height="50"></rect>
+      </svg>
+      <span>栄養価情報を保存</span>
+    <% end %>
+  </div>
+<% end %>

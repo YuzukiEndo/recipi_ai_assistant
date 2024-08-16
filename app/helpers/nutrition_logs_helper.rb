@@ -1,0 +1,2 @@
+module NutritionLogsHelper
+end

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'nutrition_logs/index'
+  get 'nutrition_logs/create'
   root 'pages#home'
 
   get 'how_to_use', to: 'pages#how_to_use'
@@ -33,5 +35,8 @@ Rails.application.routes.draw do
   #パスワードリセット
   resources :password_resets, only: [:new, :create, :edit, :update]
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
+  #栄養価保存
+  resources :nutrition_logs, only: [:new, :create, :index]
 
 end
