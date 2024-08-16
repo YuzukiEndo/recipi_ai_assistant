@@ -1,0 +1,32 @@
+<div class="bg_pattern Boxes"></div>
+<div class="nutrition-log-container">
+  <h1 class="nutrition-log-title">栄養価情報</h1>
+
+  <div class="nutrition-log-flex-container">
+    <div class="nutrition-log-section">
+      <h2 class="nutrition-log-subtitle">本日の栄養価情報</h2>
+      <div class="nutrition-info">
+        <p class="nutrition-item"><span class="nutrition-label">カロリー:</span> <span class="nutrition-value"><%= @today_log.calories.to_f %> kcal</span></p>
+        <p class="nutrition-item"><span class="nutrition-label">タンパク質:</span> <span class="nutrition-value"><%= @today_log.protein.to_f %> g</span></p>
+        <p class="nutrition-item"><span class="nutrition-label">脂質:</span> <span class="nutrition-value"><%= @today_log.fat.to_f %> g</span></p>
+        <p class="nutrition-item"><span class="nutrition-label">炭水化物:</span> <span class="nutrition-value"><%= @today_log.carbs.to_f %> g</span></p>
+        <p class="nutrition-item"><span class="nutrition-label">食物繊維:</span> <span class="nutrition-value"><%= @today_log.fiber.to_f %> g</span></p>
+      </div>
+    </div>
+
+    <div class="nutrition-log-section">
+      <h2 class="nutrition-log-subtitle">昨日の栄養価情報</h2>
+      <% if @yesterday_log %>
+        <div class="nutrition-info">
+          <p class="nutrition-item"><span class="nutrition-label">カロリー:</span> <span class="nutrition-value"><%= @yesterday_log.calories %> kcal</span></p>
+          <p class="nutrition-item"><span class="nutrition-label">タンパク質:</span> <span class="nutrition-value"><%= @yesterday_log.protein %> g</span></p>
+          <p class="nutrition-item"><span class="nutrition-label">脂質:</span> <span class="nutrition-value"><%= @yesterday_log.fat %> g</span></p>
+          <p class="nutrition-item"><span class="nutrition-label">炭水化物:</span> <span class="nutrition-value"><%= @yesterday_log.carbs %> g</span></p>
+          <p class="nutrition-item"><span class="nutrition-label">食物繊維:</span> <span class="nutrition-value"><%= @yesterday_log.fiber %> g</span></p>
+        </div>
+      <% else %>
+        <p class="no-data">昨日の栄養価情報はありません。</p>
+      <% end %>
+    </div>
+  </div>
+</div>

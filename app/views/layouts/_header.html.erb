@@ -7,6 +7,7 @@
           <li class="header-nav-item"><%= link_to '使用方法', how_to_use_path, class: 'header-nav-link' %></li>
           <% if logged_in? %>
             <li class="header-nav-item"><%= link_to 'お気に入り', favorites_path, class: 'header-nav-link' %></li>
+            <li class="header-nav-item"><%= link_to '栄養記録', nutrition_logs_path, class: 'header-nav-link' %></li>
             <li class="header-nav-item"><%= link_to 'ログアウト', logout_path, method: :delete, class: 'header-nav-link' %></li>
           <% else %>
             <li class="header-nav-item"><%= link_to '新規登録', signup_path, class: 'header-nav-link' %></li>

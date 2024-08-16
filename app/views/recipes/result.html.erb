@@ -49,4 +49,11 @@
   <% else %>
     <p class="result-error-message">レシピの生成に失敗しました。もう一度お試しください。</p>
   <% end %>
+  <div class="recipe-form-actions">
+  <%= link_to new_nutrition_log_path(recipe_id: @recipe.id), class: 'recipe-btn-svg' do %>
+    <svg>
+      <rect x="2" y="2" rx="0" fill="none" width="200" height="50"></rect>
+    </svg>
+    <span>調理完了</span>
+  <% end %>
 </div>

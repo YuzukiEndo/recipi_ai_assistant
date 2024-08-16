@@ -48,3 +48,16 @@
 .favorite-button-list .fa-star.favorite-star-list {
   color: #4aecd7;
 }
+
+.no-favorites-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  text-align: center;
+}
+
+.no-favorites-message p {
+  font-size: 18px;
+  color: #666666;
+}
