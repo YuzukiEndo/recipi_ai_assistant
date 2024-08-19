@@ -66,39 +66,51 @@ class LineBotController < ApplicationController
       end
     when 'waiting_for_ingredients'
       save_user_input(user_id, 'ingredients', text)
-      ask_confirmation(event['replyToken'])
+      ask_confirmation(event['replyToken'], user_id)
       set_user_state(user_id, 'waiting_for_confirmation')
     when 'waiting_for_confirmation'
-      if text == 'レシピ生成'
+      if text == '生成開始'
         generate_and_send_recipe(event['replyToken'], user_id)
         set_user_state(user_id, 'initial')
       elsif text == '条件変更'
         ask_cooking_time(event['replyToken'])
         set_user_state(user_id, 'waiting_for_cooking_time')
       else
-        client.reply_message(event['replyToken'], { type: 'text', text: '「レシピ生成」または「条件変更」と入力してください。' })
+        client.reply_message(event['replyToken'], { type: 'text', text: '「生成開始」または「条件変更」と入力してください。' })
       end
     end
   end
 
   def ask_cooking_time(reply_token)
-    message = { type: 'text', text: '調理時間を選択してください（短時間、普通、長時間）' }
+    message = { type: 'text', text: '調理時間を選択してください。（短時間、普通、長時間）' }
     client.reply_message(reply_token, message)
   end
 
   def ask_category(reply_token)
-    message = { type: 'text', text: 'カテゴリーを選択してください（和風、洋風、中華風）' }
+    message = { type: 'text', text: 'カテゴリーを選択してください。（和風、洋風、中華風）' }
     client.reply_message(reply_token, message)
   end
 
   def ask_ingredients(reply_token)
-    message = { type: 'text', text: '食材を入力してください' }
+    message = { type: 'text', text: '食材を入力してください。' }
     client.reply_message(reply_token, message)
   end
 
-  def ask_confirmation(reply_token)
-    message = { type: 'text', text: '条件を変更する場合は「条件変更」、レシピを生成する場合は「レシピ生成」と入力してください' }
-    client.reply_message(reply_token, message)
+  def ask_confirmation(reply_token, user_id)
+    cooking_time = get_user_input(user_id, 'cooking_time')
+    category = get_user_input(user_id, 'category')
+    ingredients = get_user_input(user_id, 'ingredients')
+  
+    message = <<~TEXT
+      以下の条件でレシピを生成します：
+      調理時間：#{cooking_time}
+      カテゴリー：#{category}
+      主な食材：#{ingredients}
+  
+      これでよろしければ「生成開始」、条件を変更する場合は「条件変更」と入力してください。
+    TEXT
+  
+    client.reply_message(reply_token, { type: 'text', text: message })
   end
 
   def generate_and_send_recipe(reply_token, user_id)
