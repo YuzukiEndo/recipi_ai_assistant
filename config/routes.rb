@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   get 'recipe_conditions/new', to: 'recipe_conditions#new', as: 'recipe_conditions_new'
   post 'recipe_conditions', to: 'recipe_conditions#create'
 
+  get 'recipes/:id/line_share', to: 'recipes#line_share', as: 'line_share_recipe'
+
+  get 'recipes/:id/share_twitter', to: 'recipes#share_twitter', as: 'share_twitter_recipe'
+
   resources :recipes, only: [:show] do
     collection do
       get 'result'  # レシピ生成完了画面用

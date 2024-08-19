@@ -55,4 +55,12 @@
     </svg>
     <span>調理完了</span>
   <% end %>
+  <div class="share-buttons">
+  <%= link_to line_share_recipe_path(@recipe), class: 'share-button btn-line' do %>
+    <%= image_tag 'line_icon.png', alt: 'LINE', class: 'share-icon' %>
+  <% end %>
+  <%= link_to share_twitter_recipe_path(@recipe), class: 'share-button btn-twitter' do %>
+    <%= image_tag 'twitter_icon.png', alt: 'Twitter', class: 'share-icon' %>
+  <% end %>
+</div>
 </div>

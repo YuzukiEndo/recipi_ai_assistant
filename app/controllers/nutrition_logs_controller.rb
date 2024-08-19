@@ -28,7 +28,7 @@ class NutritionLogsController < ApplicationController
     @nutrition_log.fiber = (@nutrition_log.fiber || 0) + nutrition_log_params[:fiber].to_f
   
     if @nutrition_log.save
-      redirect_to nutrition_logs_path, flash: { success: '栄養価情報は正常に更新されました。' }
+      redirect_to nutrition_logs_path, flash: { success: '今回あなたが摂取した食事の栄養価を保存しました。' }
     else
       @recipe = Recipe.find(params[:nutrition_log][:recipe_id])
       render :new

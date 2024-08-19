@@ -118,7 +118,7 @@ ul {
 
 .nutrition-log-title {
   margin-bottom: 20px;
-  font-size: 40px; // タイトルのサイズを大きく
+  font-size: 40px;
 }
 
 .nutrition-log-form {
@@ -131,29 +131,29 @@ ul {
 }
 
 .nutrition-item {
-  margin: 35px 0; // 項目間の余白を増やす
-  font-size: 20px; // 全体的なフォントサイズを大きく
+  margin: 35px 0;
+  font-size: 20px;
 }
 
 .nutrition-label {
   display: inline-block;
-  width: 120px; // ラベルの幅を広げる
+  width: 120px;
   text-align: right;
-  margin-right: 15px; // ラベルと値の間隔を広げる
+  margin-right: 15px;
 }
 
 .nutrition-value {
   font-weight: bold;
-  letter-spacing: 0.05em; // 文字間隔を広げる
+  letter-spacing: 0.05em;
 }
 
 .recipe-form-actions {
   text-align: center;
-  margin-top: 50px; // ボタンの上の余白を増やす
+  margin-top: 50px;
 }
 
 .nutrition-log-container {
-  max-width: 900px;  // コンテナの幅を広げる
+  max-width: 900px;
   margin: 0 auto;
   padding: 20px;
   text-align: center;
@@ -171,7 +171,7 @@ ul {
 }
 
 .nutrition-log-section {
-  width: 48%;  // 各セクションの幅を調整
+  width: 48%;
 }
 
 .nutrition-log-subtitle {
@@ -204,4 +204,37 @@ ul {
 .no-data {
   font-size: 20px;
   color: #666666;
+}
+
+.recipe-form-actions {
+  text-align: center;
+  margin-bottom: -10px;
+}
+
+.share-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.share-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  transition: all 0.3s ease;
+  border: none;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.share-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
