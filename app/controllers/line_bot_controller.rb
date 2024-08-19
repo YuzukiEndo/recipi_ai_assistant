@@ -100,16 +100,16 @@ class LineBotController < ApplicationController
     cooking_time = get_user_input(user_id, 'cooking_time')
     category = get_user_input(user_id, 'category')
     ingredients = get_user_input(user_id, 'ingredients')
-  
+
     message = <<~TEXT
       以下の条件でレシピを生成します：
       調理時間：#{cooking_time}
       カテゴリー：#{category}
       主な食材：#{ingredients}
-  
+
       これでよろしければ「生成開始」、条件を変更する場合は「条件変更」と入力してください。
     TEXT
-  
+
     client.reply_message(reply_token, { type: 'text', text: message })
   end
 
@@ -124,7 +124,12 @@ class LineBotController < ApplicationController
     end
 
     recipe = generate_recipe(category, cooking_time, ingredients)
-    client.reply_message(reply_token, { type: 'text', text: format_recipe_for_line(recipe) })
+    
+    if recipe.nil? || recipe.empty?
+      client.reply_message(reply_token, { type: 'text', text: 'レシピの生成に失敗しました。別の食材で再試行してください。' })
+    else
+      client.reply_message(reply_token, { type: 'text', text: format_recipe_for_line(recipe) })
+    end
   end
 
   def get_user_state(user_id)
@@ -155,17 +160,25 @@ class LineBotController < ApplicationController
   def generate_recipe(category, cooking_time, ingredients)
     prompt = generate_prompt(category, cooking_time, ingredients)
     client = OpenAI::Client.new
-    response = client.chat(
-      parameters: {
-        model: "gpt-3.5-turbo",
-        messages: [{ role: "user", content: prompt }],
-        temperature: 0.7,
-      }
-    )
-    parse_response(response.dig("choices", 0, "message", "content"))
-  rescue => e
-    Rails.logger.error("OpenAI API error: #{e.message}")
-    nil
+    begin
+      response = client.chat(
+        parameters: {
+          model: "gpt-3.5-turbo",
+          messages: [{ role: "user", content: prompt }],
+          temperature: 0.7,
+        }
+      )
+      content = response.dig("choices", 0, "message", "content")
+      
+      if content.nil? || content.empty?
+        raise "Failed to generate recipe"
+      end
+      
+      parse_response(content)
+    rescue => e
+      Rails.logger.error("OpenAI API error: #{e.message}")
+      nil
+    end
   end
 
   def generate_prompt(category, cooking_time, ingredients)
@@ -261,8 +274,8 @@ class LineBotController < ApplicationController
       #{recipe[:nutrition]}
     TEXT
 
-    if text.length > 5000 
-      text = text[0...4997] + "..."
+    if text.length > 100 
+      text = text[0...95] + "..."
     end
 
     text
