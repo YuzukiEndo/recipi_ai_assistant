@@ -274,8 +274,8 @@ class LineBotController < ApplicationController
       #{recipe[:nutrition]}
     TEXT
 
-    if text.length > 100 
-      text = text[0...95] + "..."
+    if text.length > 1000 
+      text = text[0...997] + "..."
     end
 
     text
