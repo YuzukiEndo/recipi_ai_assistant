@@ -31,6 +31,20 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
   end
+
+  def line_share
+    @recipe = Recipe.find(params[:id])
+    message = "#{@recipe.name}のレシピをCUISINE AI UTOPIAで作成しました。"
+    line_share_url = "https://social-plugins.line.me/lineit/share?url=#{CGI.escape(recipe_url(@recipe))}&text=#{CGI.escape(message)}"
+    redirect_to line_share_url
+  end
+
+  def share_twitter
+    @recipe = Recipe.find(params[:id])
+    tweet_text = "#{@recipe.name}のレシピをCUISINE AI UTOPIAで作成しました。"
+    tweet_url = "https://twitter.com/intent/tweet?text=#{CGI.escape(tweet_text)}&url=#{CGI.escape(recipe_url(@recipe))}"
+    redirect_to tweet_url
+  end
   
   private
   

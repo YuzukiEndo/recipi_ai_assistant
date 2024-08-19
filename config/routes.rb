@@ -9,10 +9,15 @@ Rails.application.routes.draw do
   get 'contact', to: 'pages#contact'
   post 'contact', to: 'pages#submit_contact'
   get 'password_resets', to: 'password_resets#new'
+  post '/callback', to: 'line_bot#callback'
 
   # レシピ関連のルート
   get 'recipe_conditions/new', to: 'recipe_conditions#new', as: 'recipe_conditions_new'
   post 'recipe_conditions', to: 'recipe_conditions#create'
+
+  get 'recipes/:id/line_share', to: 'recipes#line_share', as: 'line_share_recipe'
+
+  get 'recipes/:id/share_twitter', to: 'recipes#share_twitter', as: 'share_twitter_recipe'
 
   resources :recipes, only: [:show] do
     collection do
