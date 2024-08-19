@@ -2,6 +2,7 @@ require 'line/bot'
 require 'openai'
 
 class LineBotController < ApplicationController
+  protect_from_forgery with: :null_session
   skip_before_action :require_login, only: [:callback]
 
   def callback
