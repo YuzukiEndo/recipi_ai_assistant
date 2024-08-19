@@ -18,18 +18,7 @@ class LineBotController < ApplicationController
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
-          unless check_rate_limit(event['replyToken'])
-            next
-          end
-          
-          message = event.message['text']
-          category, cooking_time, ingredients = parse_message(message)
-          if category && cooking_time && ingredients
-            recipe = generate_recipe(category, cooking_time, ingredients)
-            client.reply_message(event['replyToken'], { type: 'text', text: format_recipe_for_line(recipe) })
-          else
-            client.reply_message(event['replyToken'], { type: 'text', text: '不適切な入力データです。全ての項目を入力してください。' })
-          end
+          handle_text_message(event)
         end
       end
     end
@@ -46,15 +35,108 @@ class LineBotController < ApplicationController
     }
   end
 
-  def parse_message(message)
-    parts = message.split(',').map(&:strip)
-    return nil if parts.length < 3
+  def handle_text_message(event)
+    user_id = event['source']['userId']
+    text = event.message['text']
 
-    category = parts[0]
-    cooking_time = parts[1]
-    ingredients = parts[2..-1].join(',')
+    case get_user_state(user_id)
+    when 'initial'
+      if text == 'レシピ生成'
+        ask_cooking_time(event['replyToken'])
+        set_user_state(user_id, 'waiting_for_cooking_time')
+      else
+        client.reply_message(event['replyToken'], { type: 'text', text: 'レシピを生成するには「レシピ生成」と入力してください。' })
+      end
+    when 'waiting_for_cooking_time'
+      if ['短時間', '普通', '長時間'].include?(text)
+        save_user_input(user_id, 'cooking_time', text)
+        ask_category(event['replyToken'])
+        set_user_state(user_id, 'waiting_for_category')
+      else
+        client.reply_message(event['replyToken'], { type: 'text', text: '無効な調理時間です。短時間、普通、長時間から選んでください。' })
+      end
+    when 'waiting_for_category'
+      if ['和風', '洋風', '中華風'].include?(text)
+        save_user_input(user_id, 'category', text)
+        ask_ingredients(event['replyToken'])
+        set_user_state(user_id, 'waiting_for_ingredients')
+      else
+        client.reply_message(event['replyToken'], { type: 'text', text: '無効なカテゴリーです。和風、洋風、中華風から選んでください。' })
+      end
+    when 'waiting_for_ingredients'
+      save_user_input(user_id, 'ingredients', text)
+      ask_confirmation(event['replyToken'])
+      set_user_state(user_id, 'waiting_for_confirmation')
+    when 'waiting_for_confirmation'
+      if text == 'レシピ生成'
+        generate_and_send_recipe(event['replyToken'], user_id)
+        set_user_state(user_id, 'initial')
+      elsif text == '条件変更'
+        ask_cooking_time(event['replyToken'])
+        set_user_state(user_id, 'waiting_for_cooking_time')
+      else
+        client.reply_message(event['replyToken'], { type: 'text', text: '「レシピ生成」または「条件変更」と入力してください。' })
+      end
+    end
+  end
 
-    [category, cooking_time, ingredients]
+  def ask_cooking_time(reply_token)
+    message = { type: 'text', text: '調理時間を選択してください（短時間、普通、長時間）' }
+    client.reply_message(reply_token, message)
+  end
+
+  def ask_category(reply_token)
+    message = { type: 'text', text: 'カテゴリーを選択してください（和風、洋風、中華風）' }
+    client.reply_message(reply_token, message)
+  end
+
+  def ask_ingredients(reply_token)
+    message = { type: 'text', text: '食材を入力してください' }
+    client.reply_message(reply_token, message)
+  end
+
+  def ask_confirmation(reply_token)
+    message = { type: 'text', text: '条件を変更する場合は「条件変更」、レシピを生成する場合は「レシピ生成」と入力してください' }
+    client.reply_message(reply_token, message)
+  end
+
+  def generate_and_send_recipe(reply_token, user_id)
+    cooking_time = get_user_input(user_id, 'cooking_time')
+    category = get_user_input(user_id, 'category')
+    ingredients = get_user_input(user_id, 'ingredients')
+
+    unless check_rate_limit(user_id)
+      client.reply_message(reply_token, { type: 'text', text: 'レシピ生成回数の制限に達しました。1時間後に再試行してください。' })
+      return
+    end
+
+    recipe = generate_recipe(category, cooking_time, ingredients)
+    client.reply_message(reply_token, { type: 'text', text: format_recipe_for_line(recipe) })
+  end
+
+  def get_user_state(user_id)
+    Rails.cache.read("#{user_id}_state") || 'initial'
+  end
+
+  def set_user_state(user_id, state)
+    Rails.cache.write("#{user_id}_state", state, expires_in: 1.hour)
+  end
+
+  def save_user_input(user_id, key, value)
+    Rails.cache.write("#{user_id}_#{key}", value, expires_in: 1.hour)
+  end
+
+  def get_user_input(user_id, key)
+    Rails.cache.read("#{user_id}_#{key}")
+  end
+
+  def check_rate_limit(user_id)
+    key = "rate_limit_#{user_id}"
+    count = Rails.cache.read(key) || 0
+    count += 1
+    Rails.cache.write(key, count, expires_in: 1.hour)
+    
+    count <= 20
   end
 
   def generate_recipe(category, cooking_time, ingredients)
@@ -71,20 +153,6 @@ class LineBotController < ApplicationController
   rescue => e
     Rails.logger.error("OpenAI API error: #{e.message}")
     nil
-  end
-
-  def check_rate_limit(reply_token)
-    key = "rate_limit_#{reply_token}"
-    count = Rails.cache.read(key) || 0
-    count += 1
-    Rails.cache.write(key, count, expires_in: 1.hour)
-    
-    if count > 20
-      client.reply_message(reply_token, { type: 'text', text: 'レシピ生成回数の制限に達しました。1時間後に再試行してください。' })
-      false
-    else
-      true
-    end
   end
 
   def generate_prompt(category, cooking_time, ingredients)
@@ -180,7 +248,7 @@ class LineBotController < ApplicationController
       #{recipe[:nutrition]}
     TEXT
 
-    if text.length > 5000  # LINEのメッセージ制限
+    if text.length > 5000 
       text = text[0...4997] + "..."
     end
 
