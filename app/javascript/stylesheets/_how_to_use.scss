@@ -15,7 +15,6 @@
       padding-bottom: 1.5rem;
       border-bottom: 2px solid #a0a0a0;
       
-
       ul {
         display: inline-block;
         text-align: left;
@@ -23,8 +22,8 @@
       }
     }
 
-    &:last-child .card-body::after {
-      display: none;
+    &:last-child .card-body {
+      border-bottom: none;
     }
   }
 

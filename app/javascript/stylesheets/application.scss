@@ -92,3 +92,61 @@ ul {
   float: right;
   position: absolute;
 }
+
+.terms-of-service {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: "Noto Serif JP", serif;
+  text-align: center;
+
+  .terms-title {
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .terms-introduction, .terms-agreement {
+    margin-bottom: 20px;
+  }
+
+  .terms-list {
+    list-style-type: none;
+    padding-left: 0;
+
+    .terms-item {
+      margin-bottom: 20px;
+      border-bottom: 2px solid #a0a0a0;
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .terms-item-title {
+        font-size: 25px;
+        font-weight: bold;
+        margin-bottom: -30px;
+      }
+    }
+  }
+
+  .terms-sublist {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .terms-footer {
+    margin-top: 30px;
+    font-weight: bold;
+  }
+
+  p, li {
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+}
