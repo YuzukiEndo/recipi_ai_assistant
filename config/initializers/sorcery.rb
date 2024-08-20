@@ -9,7 +9,6 @@ Rails.application.config.sorcery.submodules = [:reset_password]
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
   config.user_class = 'User'
-  config.reset_password_expiration_period = 24.hours
   # -- core --
   # What controller action to call for non-authenticated users. You can also
   # override the 'not_authenticated' method of course.
@@ -246,6 +245,7 @@ Rails.application.config.sorcery.configure do |config|
   # --- user config ---
   config.user_config do |user|
     user.reset_password_mailer = UserMailer
+    config.reset_password.expiration_period = 24.hours
 
     # -- core --
     # Specify username attributes, for example: [:username, :email].
