@@ -59,6 +59,12 @@ document.addEventListener('turbolinks:load', function() {
   });
 });
 
+document.addEventListener("turbolinks:load", function() {
+  if (typeof LineIt !== 'undefined') {
+    LineIt.loadButton();
+  }
+});
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
