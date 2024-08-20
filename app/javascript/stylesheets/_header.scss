@@ -1,11 +1,12 @@
 .header {
   width: 100%;
+  min-width: 1200px;
   background-color: #fdfdfd;
   padding: 2.5rem 0;
 }
 
 .header-container {
-  max-width: 1200px;
+  max-width: 1900px;
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -22,7 +23,6 @@
   color: #a1dfd1;
   text-decoration: none;
   font-weight: bold;
-  margin-left: -300px;
   &:hover {
     color: #9ef0e5;
   }
@@ -33,7 +33,6 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
-  transform: translateX(300px);
 }
 
 .header-nav-item {
@@ -47,4 +46,20 @@
   &:hover {
     color: #cccccc;
   }
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item {
+  margin: 0 10px;
 }

@@ -24,6 +24,8 @@ body {
   font-family: "Noto Serif JP", serif;
   margin: 0;
   padding: 0;
+  min-width: 1200px;
+  width: 100%;
 }
 
 body, input, button, select, textarea {
@@ -56,8 +58,9 @@ ul {
   opacity: 0.4;
   z-index: -1;
 }
+
 .Boxes {
-  background-image:  linear-gradient(#dfdfdf 2px, transparent 2px), linear-gradient(to right, #dfdfdf 2px, #ecebe0 2px);
+  background-image: linear-gradient(#dfdfdf 2px, transparent 2px), linear-gradient(to right, #dfdfdf 2px, #ecebe0 2px);
   background-size: 40px 40px;
 }
 
@@ -106,49 +109,6 @@ ul {
 
 .password-reset-container-extended {
   @extend .password-reset-container;
-  margin-top: 50px;
-}
-
-.nutrition-log-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: center;
-}
-
-.nutrition-log-title {
-  margin-bottom: 20px;
-  font-size: 40px;
-}
-
-.nutrition-log-form {
-  display: inline-block;
-  text-align: left;
-}
-
-.nutrition-info {
-  margin-bottom: 20px;
-}
-
-.nutrition-item {
-  margin: 35px 0;
-  font-size: 20px;
-}
-
-.nutrition-label {
-  display: inline-block;
-  width: 120px;
-  text-align: right;
-  margin-right: 15px;
-}
-
-.nutrition-value {
-  font-weight: bold;
-  letter-spacing: 0.05em;
-}
-
-.recipe-form-actions {
-  text-align: center;
   margin-top: 50px;
 }
 
@@ -242,5 +202,10 @@ ul {
 .line-it-button {
   float: right;
   position: absolute;
-  right: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }

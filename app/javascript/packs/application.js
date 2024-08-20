@@ -59,11 +59,12 @@ document.addEventListener('turbolinks:load', function() {
   });
 });
 
-document.addEventListener("turbolinks:load", function() {
-  if (typeof LineIt !== 'undefined') {
-    LineIt.loadButton();
-  }
-});
+const webpack = require('webpack')
+environment.plugins.prepend('Provide',
+  new webpack.ProvidePlugin({
+    LineIt: 'line-it-button'
+  })
+)
 
 Rails.start()
 Turbolinks.start()
