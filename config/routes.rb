@@ -26,14 +26,15 @@ Rails.application.routes.draw do
   end
 
   # ユーザー関連のルート
-  resources :users, only: %i[new create]
+  resources :users, only: [:new, :create]
   get 'signup', to: 'users#new'
+  post 'signup', to: 'users#create'
 
   # セッション関連のルート
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
-  get 'logout', to: 'user_sessions#destroy' # この行を追加
+  get 'logout', to: 'user_sessions#destroy'
 
   #お気に入り機能
   resources :favorites, only: [:index, :create]

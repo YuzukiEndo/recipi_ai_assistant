@@ -16,7 +16,6 @@ import * as ActiveStorage from "@rails/activestorage"
 
 import '../stylesheets/application.scss'
 
-// フラッシュメッセージの自動フェードアウト
 document.addEventListener('turbolinks:load', function() {
   const flashMessages = document.querySelectorAll('.flash-message');
   flashMessages.forEach(message => {
@@ -26,7 +25,6 @@ document.addEventListener('turbolinks:load', function() {
   });
 });
 
-// フェードアウトアニメーション終了後のメッセージ削除
 document.addEventListener('animationend', function(event) {
   if (event.animationName === 'fadeOut') {
     event.target.remove();
@@ -59,12 +57,11 @@ document.addEventListener('turbolinks:load', function() {
   });
 });
 
-const webpack = require('webpack')
-environment.plugins.prepend('Provide',
-  new webpack.ProvidePlugin({
-    LineIt: 'line-it-button'
-  })
-)
+document.addEventListener("turbolinks:load", function() {
+  if (typeof LineIt !== 'undefined') {
+    LineIt.loadButton();
+  }
+});
 
 Rails.start()
 Turbolinks.start()
