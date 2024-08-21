@@ -18,7 +18,10 @@
   padding: 15px;
   border-radius: 4px;
   margin-bottom: 20px;
-  right: 10%
+  right: 10%;
+  &.fadeOut {
+    animation: fadeOut 0.5s forwards;
+  }
 }
 
 .flash-success::before {

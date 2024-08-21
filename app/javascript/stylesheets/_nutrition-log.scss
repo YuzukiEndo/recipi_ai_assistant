@@ -1,0 +1,53 @@
+.nutrition-log-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.nutrition-log-title {
+  margin-bottom: 40px;
+  font-size: 40px;
+}
+
+.nutrition-log-flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.nutrition-log-section {
+  width: 48%;
+}
+
+.nutrition-log-subtitle {
+  font-size: 24px;
+  margin-bottom: -20px;
+}
+
+.nutrition-info {
+  display: inline-block;
+  text-align: left;
+}
+
+.nutrition-item {
+  margin: 30px 0;
+  font-size: 20px;
+}
+
+.nutrition-label {
+  display: inline-block;
+  width: 120px;
+  text-align: right;
+  margin-right: 15px;
+}
+
+.nutrition-value {
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+
+.no-data {
+  font-size: 20px;
+  color: #666666;
+}

@@ -6,7 +6,6 @@ class RecipeConditionsController < ApplicationController
   def new
     @categories = ['和風', '洋風', '中華風']
     @cooking_times = ['短時間', '標準', '長時間']
-    @ingredients = Ingredient.all
   end
 
   def create

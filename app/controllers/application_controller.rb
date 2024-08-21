@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   before_action :require_login, except: [:home, :new, :how_to_use, :privacy_policy, :contact, :terms_of_service]
   before_action :set_cache_headers
+
+  def redirect_if_logged_in
+    redirect_to root_path if logged_in?
+  end
   
   private
 

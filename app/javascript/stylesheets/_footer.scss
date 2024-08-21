@@ -1,5 +1,6 @@
 .custom-footer {
   width: 100%;
+  min-width: 1200px;
   background-color: #fdfdfd;
   padding: 0.5rem 0;
 }
@@ -25,4 +26,20 @@
       color: #cccccc;
     }
   }
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item {
+  margin: 0 10px;
 }
