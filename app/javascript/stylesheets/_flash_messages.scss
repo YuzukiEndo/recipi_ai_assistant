@@ -4,7 +4,7 @@
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   z-index: 1050;
   text-align: center;
 }
@@ -18,7 +18,8 @@
   padding: 15px;
   border-radius: 4px;
   margin-bottom: 20px;
-  right: 10%;
+  width: 100%;
+  text-align: center; 
   &.fadeOut {
     animation: fadeOut 0.5s forwards;
   }
@@ -41,7 +42,7 @@
   white-space: nowrap;
   margin: 0 auto;
   letter-spacing: .15em;
-  animation: typing 2.5s steps(40, end);
+  animation: typing 3s steps(40, end);
 }
 
 .typewriter::after {
