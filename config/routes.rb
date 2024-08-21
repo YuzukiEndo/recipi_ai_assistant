@@ -46,4 +46,6 @@ Rails.application.routes.draw do
   #栄養価保存
   resources :nutrition_logs, only: [:new, :create, :index]
 
+  
+
 end
