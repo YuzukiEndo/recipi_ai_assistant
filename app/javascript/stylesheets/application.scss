@@ -17,6 +17,9 @@
 @import 'password-reset';
 @import 'nutrition-log';
 @import 'share-buttons';
+@import 'terms-of-service';
+@import 'privacy-policy';
+
 body {
   display: flex;
   flex-direction: column;
@@ -81,7 +84,6 @@ ul {
       }
     }
   }
-  
   .current {
     color: #303030;
     font-weight: bold;
@@ -91,122 +93,6 @@ ul {
 .line-it-button {
   float: right;
   position: absolute;
-}
-
-.terms-of-service {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: "Noto Serif JP", serif;
-  text-align: center;
-
-  .terms-title {
-    font-size: 35px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-
-  .terms-introduction, .terms-agreement {
-    margin-bottom: 20px;
-  }
-
-  .terms-list {
-    list-style-type: none;
-    padding-left: 0;
-
-    .terms-item {
-      margin-bottom: 20px;
-      border-bottom: 2px solid #a0a0a0;
-      &:last-child {
-        border-bottom: none;
-      }
-
-      .terms-item-title {
-        font-size: 25px;
-        font-weight: bold;
-        margin-bottom: -30px;
-      }
-    }
-  }
-
-  .terms-sublist {
-    list-style-type: none;
-    padding-left: 0;
-  }
-
-  .terms-footer {
-    margin-top: 30px;
-    font-weight: bold;
-  }
-
-  p, li {
-    text-align: center;
-    line-height: 1.6;
-    margin-bottom: 15px;
-  }
-
-  ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-}
-
-.privacy-policy {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: "Noto Serif JP", serif;
-  text-align: center;
-
-  .policy-title {
-    font-size: 35px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-
-  .policy-introduction {
-    margin-bottom: 20px;
-  }
-
-  .policy-list {
-    list-style-type: none;
-    padding-left: 0;
-
-    .policy-item {
-      margin-bottom: 20px;
-      border-bottom: 2px solid #a0a0a0;
-      &:last-child {
-        border-bottom: none;
-      }
-
-      .policy-item-title {
-        font-size: 25px;
-        font-weight: bold;
-        margin-bottom: -30px;
-      }
-    }
-  }
-
-  .policy-sublist {
-    list-style-type: none;
-    padding-left: 0;
-  }
-
-  .policy-footer {
-    margin-top: 30px;
-    font-weight: bold;
-  }
-
-  p, li {
-    text-align: center;
-    line-height: 1.6;
-    margin-bottom: 15px;
-  }
-
-  ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
 }
 
 .contact-form-container {

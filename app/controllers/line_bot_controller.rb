@@ -49,12 +49,12 @@ class LineBotController < ApplicationController
         client.reply_message(event['replyToken'], { type: 'text', text: 'レシピを生成するには「レシピ生成」と入力してください。' })
       end
     when 'waiting_for_cooking_time'
-      if ['短時間', '普通', '長時間'].include?(text)
+      if ['短時間', '標準', '長時間'].include?(text)
         save_user_input(user_id, 'cooking_time', text)
         ask_category(event['replyToken'])
         set_user_state(user_id, 'waiting_for_category')
       else
-        client.reply_message(event['replyToken'], { type: 'text', text: '無効な調理時間です。短時間、普通、長時間から選んでください。' })
+        client.reply_message(event['replyToken'], { type: 'text', text: '無効な調理時間です。短時間、標準、長時間から選んでください。' })
       end
     when 'waiting_for_category'
       if ['和風', '洋風', '中華風'].include?(text)
@@ -82,7 +82,7 @@ class LineBotController < ApplicationController
   end
 
   def ask_cooking_time(reply_token)
-    message = { type: 'text', text: '調理時間を選択してください。（短時間、普通、長時間）' }
+    message = { type: 'text', text: '調理時間を選択してください。（短時間、標準、長時間）' }
     client.reply_message(reply_token, message)
   end
 
