@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'oauths/oauth'
+  get 'oauths/callback'
   get 'nutrition_logs/index'
   get 'nutrition_logs/create'
   root 'pages#home'
@@ -10,6 +12,10 @@ Rails.application.routes.draw do
   post 'contact', to: 'pages#submit_contact'
   get 'password_resets', to: 'password_resets#new'
   post '/callback', to: 'line_bot#callback'
+
+  post "oauth/callback" => "oauths#callback"
+  get "oauth/callback" => "oauths#callback"
+  get "oauth/:provider" => "oauths#oauth", as: :auth_at_provider
 
   # レシピ関連のルート
   get 'recipe_conditions/new', to: 'recipe_conditions#new', as: 'recipe_conditions_new'
@@ -45,7 +51,5 @@ Rails.application.routes.draw do
 
   #栄養価保存
   resources :nutrition_logs, only: [:new, :create, :index]
-
-  
 
 end

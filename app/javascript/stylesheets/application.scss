@@ -108,3 +108,17 @@ ul {
   height: 1300px;
   overflow: hidden;
 }
+
+.google-login-btn {
+  color: #666666;
+  text-decoration: none;
+  font-size: 1rem;
+  display: block;
+  text-align: center;
+  margin: 30px auto 0;
+  width: fit-content;
+
+  &:hover {
+    color: #cccccc;
+  }
+}
