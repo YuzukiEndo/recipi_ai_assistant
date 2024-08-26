@@ -22,9 +22,10 @@
       <% end %>
     </div>
 
+    <%= link_to 'Googleアカウントでログイン', auth_at_provider_path(provider: :google), class: 'google-login-btn' %>
+
     <div class="password-reset-link">
       <%= link_to "パスワードをお忘れの方はこちら", new_password_reset_path %>
     </div>
-    
   <% end %>
 </div>

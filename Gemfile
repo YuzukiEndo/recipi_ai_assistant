@@ -31,6 +31,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'sorcery'
 
+gem 'sorcery-oauth'
+
 gem 'bootstrap', '~> 5.3.0'
 
 gem 'ruby-openai'
