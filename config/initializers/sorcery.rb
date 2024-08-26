@@ -14,6 +14,10 @@ Rails.application.config.sorcery.configure do |config|
 
   config.google.key = ENV['GOOGLE_CLIENT_ID']
   config.google.secret = ENV['GOOGLE_CLIENT_SECRET']
-  config.google.callback_url = "http://localhost:3000/oauth/callback?provider=google"
+  config.google.callback_url = if Rails.env.production?
+    "https://utopia-app-20240808-f76c709c579e.herokuapp.com/oauth/callback?provider=google"
+  else
+    "http://localhost:3000/oauth/callback?provider=google"
+  end
   config.google.user_info_mapping = {email: "email", name: "name"}
 end
