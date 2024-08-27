@@ -13,7 +13,7 @@ class OauthsController < ApplicationController
     else
       begin
         @user = create_from(provider)
-        reset_session
+        #reset_session
         auto_login(@user)
         flash[:success] = '認証に成功しました。健康維持のための指示に従ってください。'
         redirect_to root_path
